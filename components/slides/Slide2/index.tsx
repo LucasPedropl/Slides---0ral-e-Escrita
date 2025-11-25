@@ -8,11 +8,11 @@ const Slide2: React.FC = () => {
     <div className="flex flex-col lg:flex-row items-center justify-between h-full gap-12 px-4 lg:px-12 w-full relative overflow-visible">
         
         {/* Background Glow - Freed from box constraint */}
-        {/* Placed at root to ensure it isn't clipped by smaller containers and covers a large area naturally */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vh] h-[120vh] bg-purple-600/20 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+        {/* Using percentages/aspect-ratio instead of vh to ensure consistency inside ScaleWrapper */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[120%] aspect-square bg-purple-600/20 blur-[100px] rounded-full pointer-events-none -z-10"></div>
 
         {/* Left: Visual Representation */}
-        <div className="relative w-full lg:w-1/2 h-[50vh] lg:h-[70vh] flex items-center justify-center order-2 lg:order-1 z-10">
+        <div className="relative w-full lg:w-1/2 h-[70%] flex items-center justify-center order-2 lg:order-1 z-10">
             
             {/* Central Visual Stack */}
             <div className="relative w-full max-w-2xl aspect-square lg:aspect-[4/3] flex items-center justify-center">

@@ -21,7 +21,7 @@ const Slide4: React.FC = () => {
         </div>
 
         {/* Main Content - Split Layout */}
-        <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto h-[65vh] lg:h-[55vh] gap-6 lg:gap-0">
+        <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto h-[55%] gap-6 lg:gap-0">
 
            {/* Option 1: CMS (No-Code) */}
            <div className="flex-1 group relative transition-all duration-500 hover:flex-[1.2]">

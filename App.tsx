@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from './components/Layout';
+import { ScaleWrapper } from './components/ScaleWrapper';
 import Slide1 from './components/slides/Slide1';
 import Slide2 from './components/slides/Slide2';
 import Slide3 from './components/slides/Slide3';
@@ -92,7 +93,7 @@ const App: React.FC = () => {
     Slide11, Slide12, Slide13, Slide14
   ];
 
-  return (
+  const MainContent = (
     <Layout
       currentSlide={currentSlide}
       totalSlides={totalSlides}
@@ -101,7 +102,6 @@ const App: React.FC = () => {
       goToSlide={goToSlide}
       onPrint={handlePrint}
     >
-      {/* Normal View */}
       <div className="relative w-full h-full print:hidden">
         <AnimatePresence initial={false} mode="wait" custom={direction}>
           <motion.div
@@ -122,8 +122,17 @@ const App: React.FC = () => {
           </motion.div>
         </AnimatePresence>
       </div>
+    </Layout>
+  );
 
-      {/* Print Mode View (Renders ALL slides) */}
+  return (
+    <>
+      {/* Normal View (Scaled) */}
+      <ScaleWrapper>
+        {MainContent}
+      </ScaleWrapper>
+
+      {/* Print Mode View (Renders ALL slides, bypasses scaling) */}
       {/* Used opacity-0 to ensure it is layout-calculated (clientWidth > 0) but invisible during preparation. */}
       {/* Z-index allows it to overlay but pointer-events-none prevents blocking interactions if something goes wrong. */}
       {isPrinting && (
@@ -138,7 +147,7 @@ const App: React.FC = () => {
           ))}
         </div>
       )}
-    </Layout>
+    </>
   );
 };
 

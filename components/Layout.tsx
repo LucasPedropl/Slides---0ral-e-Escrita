@@ -16,7 +16,8 @@ const Layout: React.FC<LayoutProps> = ({
   onPrint
 }) => {
   return (
-    <div className="h-screen w-full bg-background text-white font-sans overflow-hidden flex flex-col relative selection:bg-primary selection:text-white print:h-auto print:overflow-visible">
+    // Changed h-screen to h-full because it is now wrapped in a fixed-size container
+    <div className="h-full w-full bg-background text-white font-sans overflow-hidden flex flex-col relative selection:bg-primary selection:text-white print:h-auto print:overflow-visible">
       {/* Background Ambience with Animation (Hidden on Print) */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none print:hidden">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-purple-900/30 rounded-full blur-[120px] animate-blob" />

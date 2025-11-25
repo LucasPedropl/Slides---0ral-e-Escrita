@@ -15,7 +15,7 @@ const Slide11: React.FC = () => {
         </div>
 
         {/* Split Screen Container */}
-        <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto h-[60vh] gap-4 relative z-10">
+        <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto h-[60%] gap-4 relative z-10">
             
             {/* Front-end Side (The Dining Room) */}
             <div className="flex-1 group relative transition-all duration-700 hover:flex-[1.5]">

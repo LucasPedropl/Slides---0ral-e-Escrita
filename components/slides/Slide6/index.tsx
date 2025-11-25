@@ -60,7 +60,7 @@ const Slide6: React.FC = () => {
         </div>
 
         {/* Right Column: Visual Wireframe */}
-        <div className="relative z-10 w-full h-[50vh] lg:h-full flex items-center justify-center order-1 lg:order-2 perspective-1000">
+        <div className="relative z-10 w-full h-full flex items-center justify-center order-1 lg:order-2 perspective-1000">
              
              {/* The Blueprint Sheet */}
              <div className="w-full max-w-md bg-[#0f172a]/80 backdrop-blur-xl border-2 border-dashed border-cyan-500/30 rounded-2xl p-6 flex flex-col gap-4 shadow-2xl transform rotate-y-[-10deg] rotate-x-[5deg] hover:rotate-0 transition-transform duration-700">

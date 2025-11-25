@@ -50,7 +50,7 @@ const Slide5: React.FC = () => {
         </div>
 
         {/* Right Visual - IDE Simulation */}
-        <div className="flex-1 w-full relative h-[60vh] flex items-center justify-center perspective-1000">
+        <div className="flex-1 w-full relative h-[60%] flex items-center justify-center perspective-1000">
              
              {/* Background Glows */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-blue-600/20 rounded-full blur-[80px] pointer-events-none"></div>

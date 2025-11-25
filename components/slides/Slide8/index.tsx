@@ -37,7 +37,7 @@ const Slide8: React.FC = () => {
            </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full max-w-7xl mx-auto h-[55vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full max-w-7xl mx-auto h-[55%]">
             
             {/* Left: Device Metrics & Concept */}
             <div className="space-y-6 h-full flex flex-col justify-center animate-fade-in-up" style={{animationDelay: '0.2s'}}>

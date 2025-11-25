@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { GlassCard } from '../../ui/GlassCard';
-import { Code2, ArrowRight, Tag } from 'lucide-react';
+import { Code2, ArrowRight, LayoutTemplate } from 'lucide-react';
 
 const Slide7: React.FC = () => {
   return (
@@ -15,49 +15,38 @@ const Slide7: React.FC = () => {
         <div className="flex-1 space-y-8 z-10 animate-fade-in-up">
             <div>
                 <h2 className="text-4xl lg:text-5xl font-bold drop-shadow-neon-white leading-tight mb-4">
-                    Traduzindo para <br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">Código Real</span>
+                    Estruturando o <br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">Layout (Dashboard)</span>
                 </h2>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                    Para cada bloco visual, usamos uma <strong>Tag HTML</strong> específica. <br/>É como etiquetar caixas em uma mudança.
+                    Vamos construir um <strong>Painel de Controle</strong> completo. <br/>
+                    Usaremos tags semânticas para organizar a informação.
                 </p>
             </div>
 
             <div className="space-y-4">
                 {/* Tag Card 1 */}
-                <div className="group flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-purple-500/10 hover:border-purple-500/50 transition-all cursor-pointer hover:translate-x-2">
-                    <div className="h-12 w-12 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 font-mono font-bold group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                        &lt;h&gt;
+                <div className="group flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-orange-500/10 hover:border-orange-500/50 transition-all cursor-pointer hover:translate-x-2">
+                    <div className="h-12 w-12 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 font-mono font-bold group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                        grid
                     </div>
                     <div>
-                        <h4 className="font-bold text-white text-lg group-hover:text-purple-300 transition-colors">&lt;header&gt;</h4>
-                        <p className="text-sm text-gray-400">O topo da página. Logos e menus moram aqui.</p>
+                        <h4 className="font-bold text-white text-lg group-hover:text-orange-300 transition-colors">&lt;div class="grid"&gt;</h4>
+                        <p className="text-sm text-gray-400">O container pai que vai segurar todas as áreas.</p>
                     </div>
-                    <ArrowRight className="ml-auto text-white/20 group-hover:text-purple-400 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="ml-auto text-white/20 group-hover:text-orange-400 group-hover:translate-x-1 transition-all" />
                 </div>
 
                 {/* Tag Card 2 */}
                 <div className="group flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-blue-500/10 hover:border-blue-500/50 transition-all cursor-pointer hover:translate-x-2">
                     <div className="h-12 w-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 font-mono font-bold group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                        &lt;m&gt;
+                        main
                     </div>
                     <div>
-                        <h4 className="font-bold text-white text-lg group-hover:text-blue-300 transition-colors">&lt;main&gt;</h4>
-                        <p className="text-sm text-gray-400">O palco principal. Onde o conteúdo importante aparece.</p>
+                        <h4 className="font-bold text-white text-lg group-hover:text-blue-300 transition-colors">&lt;main&gt; & &lt;aside&gt;</h4>
+                        <p className="text-sm text-gray-400">Áreas para conteúdo principal e barra lateral.</p>
                     </div>
                      <ArrowRight className="ml-auto text-white/20 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
-                </div>
-
-                {/* Tag Card 3 */}
-                <div className="group flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-gray-500/10 hover:border-gray-500/50 transition-all cursor-pointer hover:translate-x-2">
-                    <div className="h-12 w-12 rounded-xl bg-gray-500/20 border border-gray-500/30 flex items-center justify-center text-gray-400 font-mono font-bold group-hover:bg-gray-500 group-hover:text-white transition-colors">
-                        &lt;f&gt;
-                    </div>
-                    <div>
-                        <h4 className="font-bold text-white text-lg group-hover:text-gray-300 transition-colors">&lt;footer&gt;</h4>
-                        <p className="text-sm text-gray-400">O rodapé. Créditos e contatos ficam aqui embaixo.</p>
-                    </div>
-                     <ArrowRight className="ml-auto text-white/20 group-hover:text-gray-400 group-hover:translate-x-1 transition-all" />
                 </div>
             </div>
         </div>
@@ -83,8 +72,8 @@ const Slide7: React.FC = () => {
                     </div>
 
                     {/* Editor Content */}
-                    <GlassCard className="rounded-t-none bg-[#0d0d0d] p-6 font-mono text-sm md:text-base overflow-x-auto border-t-0 shadow-inner">
-                        <div className="flex">
+                    <GlassCard className="rounded-t-none bg-[#0d0d0d] p-6 font-mono text-sm md:text-base overflow-x-auto border-t-0 shadow-inner h-[420px]">
+                        <div className="flex min-w-max">
                              {/* Line Numbers */}
                             <div className="text-gray-600 pr-4 border-r border-gray-800 select-none text-right">
                                 {Array.from({length: 18}, (_, i) => i + 1).map(num => (
@@ -93,45 +82,46 @@ const Slide7: React.FC = () => {
                             </div>
                             
                             {/* Code */}
-                            <pre className="text-gray-300 leading-relaxed pl-4">
-{`<!DOCTYPE html>
-<html>
-`}
-  <span className="text-gray-600 italic">{'<!-- Configurações invisíveis -->'}</span>
-{`
-  <head>
-    <title>Meu Site</title>
-  </head>
+                            {/* Code Block Container */}
+<pre className="text-gray-300 leading-relaxed pl-4 whitespace-pre font-mono text-sm overflow-x-auto">
+  <code>
+    {/* Comentário Principal */}
+    <span className="text-gray-500 italic">&lt;!-- Container Principal do Layout --&gt;</span>
+    {"\n"}
+    <span className="text-blue-400 font-bold">&lt;div</span> <span className="text-cyan-300">class</span>=<span className="text-green-300">"grid-layout"</span><span className="text-blue-400 font-bold">&gt;</span>
+    {"\n"}
 
-`}
-  <span className="text-gray-600 italic">{'<!-- Conteúdo visível -->'}</span>
-{`
-  <body>
-    `}
-    <span className="text-purple-400 font-bold">&lt;header&gt;</span>{`
-      `}
-      <span className="text-orange-300">&lt;h1&gt;</span><span className="text-white">Olá Mundo</span><span className="text-orange-300">&lt;/h1&gt;</span>{`
-    `}
-    <span className="text-purple-400 font-bold">&lt;/header&gt;</span>{`
+    {/* Header */}
+    {"  "}<span className="text-gray-500 italic">&lt;!-- Topo: Logo e Pesquisa --&gt;</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;header</span> <span className="text-cyan-300">class</span>=<span className="text-green-300">"top-bar"</span><span className="text-blue-400 font-bold">&gt;</span>{"\n"}
+    {"    "}<span className="text-white">...</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;/header&gt;</span>
+    {"\n"}
 
-    `}
-    <span className="text-blue-400 font-bold">&lt;main&gt;</span>{`
-      `}
-      <span className="text-orange-300">&lt;p&gt;</span><span className="text-white">Meu primeiro texto.</span><span className="text-orange-300">&lt;/p&gt;</span>{`
-      `}
-      <span className="text-orange-300">&lt;img</span> <span className="text-cyan-300">src</span>=<span className="text-green-300">"foto.jpg"</span> <span className="text-orange-300">/&gt;</span>{`
-    `}
-    <span className="text-blue-400 font-bold">&lt;/main&gt;</span>{`
+    {/* Nav */}
+    {"  "}<span className="text-gray-500 italic">&lt;!-- Lateral: Links de Navegação --&gt;</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;nav</span> <span className="text-cyan-300">class</span>=<span className="text-green-300">"sidebar"</span><span className="text-blue-400 font-bold">&gt;</span>{"\n"}
+    {"    "}<span className="text-white">...</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;/nav&gt;</span>
+    {"\n"}
 
-    `}
-    <span className="text-gray-400 font-bold">&lt;footer&gt;</span>{`
-      `}
-      <span className="text-orange-300">&lt;small&gt;</span><span className="text-white">© 2024</span><span className="text-orange-300">&lt;/small&gt;</span>{`
-    `}
-    <span className="text-gray-400 font-bold">&lt;/footer&gt;</span>{`
-  </body>
-</html>`}
-                            </pre>
+    {/* Main */}
+    {"  "}<span className="text-gray-500 italic">&lt;!-- Centro: Gráficos e Tabelas --&gt;</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;main</span> <span className="text-cyan-300">class</span>=<span className="text-green-300">"content"</span><span className="text-blue-400 font-bold">&gt;</span>{"\n"}
+    {"    "}<span className="text-white">...</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;/main&gt;</span>
+    {"\n"}
+
+    {/* Aside */}
+    {"  "}<span className="text-gray-500 italic">&lt;!-- Direita: Notificações --&gt;</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;aside</span> <span className="text-cyan-300">class</span>=<span className="text-green-300">"updates"</span><span className="text-blue-400 font-bold">&gt;</span>{"\n"}
+    {"    "}<span className="text-white">...</span>{"\n"}
+    {"  "}<span className="text-blue-400 font-bold">&lt;/aside&gt;</span>
+    {"\n"}
+
+    <span className="text-blue-400 font-bold">&lt;/div&gt;</span>
+  </code>
+</pre>
                         </div>
                     </GlassCard>
                 </div>

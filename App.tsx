@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from './components/Layout';
 import { ScaleWrapper } from './components/ScaleWrapper';
@@ -15,6 +16,9 @@ import Slide11 from './components/slides/Slide11';
 import Slide12 from './components/slides/Slide12';
 import Slide13 from './components/slides/Slide13';
 import Slide14 from './components/slides/Slide14';
+import SlideCSS from './components/slides/SlideCSS';
+import SlideJS from './components/slides/SlideJS';
+import SlideResult from './components/slides/SlideResult';
 import { AnimatePresence, motion } from 'framer-motion';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
@@ -22,7 +26,7 @@ import { Loader2 } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 14;
+  const totalSlides = 17; // Updated total slides count (Added SlideResult)
   const [direction, setDirection] = useState(0);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -140,23 +144,29 @@ const App: React.FC = () => {
   // Reordered Slides:
   // 1. Intro
   // 2. How it works
-  // 3. Front vs Back (Moved from 11)
-  // 4. Ways to Build (Swapped with 3)
-  // 5. Core Tech (Swapped with 4)
+  // 3. Front vs Back
+  // 4. Ways to Build
+  // 5. Core Tech
   // 6. IDE
-  // 7. Tags (Swapped with 6)
-  // 8. Anatomy (Swapped with 7)
-  // ... rest same
+  // 7. Tags (HTML Code)
+  // 8. Styles (CSS Code)
+  // 9. Script (JS Code)
+  // 10. RESULT (New)
+  // 11. Anatomy (Blueprint)
+  // 12. Responsive
   const slides = [
     Slide1,
     Slide2,
     Slide11, // Front vs Back
-    Slide4,  // Forms of Building (CMS vs Code)
-    Slide3,  // Core Tech (HTML/CSS/JS)
+    Slide4,  // Forms of Building
+    Slide3,  // Core Tech
     Slide5,  // IDE
-    Slide7,  // Tags (Real Code)
-    Slide6,  // Anatomy (Blueprint)
-    Slide8,
+    Slide7,  // Tags (HTML Code)
+    SlideCSS,// Styles (CSS Code)
+    SlideJS, // Script (JS Code)
+    SlideResult, // Live Result (New Slide)
+    Slide6,  // Anatomy
+    Slide8,  // Responsive
     Slide9,
     Slide10,
     Slide12,

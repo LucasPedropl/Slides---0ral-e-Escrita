@@ -80,6 +80,34 @@
         background: #4c1d95;
         border-radius: 4px;
       }
+
+      /* Print Styles */
+      @media print {
+        @page {
+           size: landscape;
+           margin: 0;
+        }
+        body {
+          background-color: #0a0118 !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          overflow: visible !important;
+        }
+        .bg-noise {
+            display: none !important;
+        }
+        .page-break {
+          page-break-after: always;
+          break-after: page;
+          height: 100vh;
+          width: 100vw;
+          overflow: hidden;
+        }
+        /* Ensure charts print correctly */
+        svg {
+            break-inside: avoid;
+        }
+      }
     </style>
   <script type="importmap">
 {

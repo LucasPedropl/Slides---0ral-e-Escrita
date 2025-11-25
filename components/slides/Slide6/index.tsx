@@ -1,8 +1,9 @@
+
 import React from 'react';
-import { GlassCard } from '../ui/GlassCard';
+import { GlassCard } from '../../ui/GlassCard';
 import { Layout, ArrowRight } from 'lucide-react';
 
-const Slide6_Structure: React.FC = () => {
+const Slide6: React.FC = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full px-4 lg:px-12 w-full relative overflow-hidden">
         
@@ -114,4 +115,4 @@ const Slide6_Structure: React.FC = () => {
   );
 };
 
-export default Slide6_Structure;
+export default Slide6;

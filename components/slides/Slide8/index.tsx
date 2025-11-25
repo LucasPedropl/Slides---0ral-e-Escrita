@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { GlassCard } from '../ui/GlassCard';
+import { GlassCard } from '../../ui/GlassCard';
 import { Smartphone, Monitor, Tablet, Wifi, Globe, MousePointer2 } from 'lucide-react';
 
 const data = [
@@ -9,7 +10,7 @@ const data = [
   { name: '2024', mobile: 68, desktop: 32 },
 ];
 
-const Slide8_Economic: React.FC = () => {
+const Slide8: React.FC = () => {
   return (
     <div className="flex flex-col h-full px-4 lg:px-8 justify-center relative w-full overflow-hidden">
         
@@ -172,4 +173,4 @@ const Slide8_Economic: React.FC = () => {
   );
 };
 
-export default Slide8_Economic;
+export default Slide8;

@@ -8,4 +8,5 @@ export interface NavProps {
   goToSlide: (index: number) => void;
   nextSlide: () => void;
   prevSlide: () => void;
+  onPrint?: () => void;
 }

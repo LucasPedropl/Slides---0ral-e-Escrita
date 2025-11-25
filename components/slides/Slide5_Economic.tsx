@@ -45,58 +45,60 @@ const Slide5_Economic: React.FC = () => {
                     </div>
                 </div>
                 
-                <ResponsiveContainer width="100%" height="80%">
-                    <BarChart data={data} barGap={12}>
-                        <defs>
-                            <linearGradient id="colorMobile" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#9333ea" stopOpacity={1}/>
-                                <stop offset="100%" stopColor="#581c87" stopOpacity={0.8}/>
-                            </linearGradient>
-                            <linearGradient id="colorDesktop" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#e879f9" stopOpacity={1}/>
-                                <stop offset="100%" stopColor="#c026d3" stopOpacity={0.8}/>
-                            </linearGradient>
-                        </defs>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                        <XAxis 
-                            dataKey="name" 
-                            axisLine={false} 
-                            tickLine={false} 
-                            tick={{ fill: '#9ca3af', fontSize: 14, fontWeight: 500 }} 
-                            dy={15}
-                        />
-                        <YAxis 
-                            axisLine={false} 
-                            tickLine={false} 
-                            tick={{ fill: '#9ca3af', fontSize: 12 }} 
-                        />
-                        <Tooltip 
-                            cursor={{fill: 'rgba(255,255,255,0.05)'}}
-                            contentStyle={{ 
-                                backgroundColor: 'rgba(10, 1, 24, 0.9)', 
-                                borderColor: 'rgba(168, 85, 247, 0.3)', 
-                                borderRadius: '12px',
-                                boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-                                color: 'white'
-                            }}
-                            itemStyle={{ color: '#e5e7eb' }}
-                        />
-                        <Bar 
-                            dataKey="mobile" 
-                            name="Mobile"
-                            fill="url(#colorMobile)" 
-                            radius={[6, 6, 0, 0]} 
-                            animationDuration={1500}
-                        />
-                        <Bar 
-                            dataKey="desktop" 
-                            name="Desktop"
-                            fill="url(#colorDesktop)" 
-                            radius={[6, 6, 0, 0]} 
-                            animationDuration={1500}
-                        />
-                    </BarChart>
-                </ResponsiveContainer>
+                <div className="w-full h-[80%] min-w-[300px]">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={300} minHeight={200}>
+                        <BarChart data={data} barGap={12}>
+                            <defs>
+                                <linearGradient id="colorMobile" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#9333ea" stopOpacity={1}/>
+                                    <stop offset="100%" stopColor="#581c87" stopOpacity={0.8}/>
+                                </linearGradient>
+                                <linearGradient id="colorDesktop" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#e879f9" stopOpacity={1}/>
+                                    <stop offset="100%" stopColor="#c026d3" stopOpacity={0.8}/>
+                                </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+                            <XAxis 
+                                dataKey="name" 
+                                axisLine={false} 
+                                tickLine={false} 
+                                tick={{ fill: '#9ca3af', fontSize: 14, fontWeight: 500 }} 
+                                dy={15}
+                            />
+                            <YAxis 
+                                axisLine={false} 
+                                tickLine={false} 
+                                tick={{ fill: '#9ca3af', fontSize: 12 }} 
+                            />
+                            <Tooltip 
+                                cursor={{fill: 'rgba(255,255,255,0.05)'}}
+                                contentStyle={{ 
+                                    backgroundColor: 'rgba(10, 1, 24, 0.9)', 
+                                    borderColor: 'rgba(168, 85, 247, 0.3)', 
+                                    borderRadius: '12px',
+                                    boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+                                    color: 'white'
+                                }}
+                                itemStyle={{ color: '#e5e7eb' }}
+                            />
+                            <Bar 
+                                dataKey="mobile" 
+                                name="Mobile"
+                                fill="url(#colorMobile)" 
+                                radius={[6, 6, 0, 0]} 
+                                animationDuration={0}
+                            />
+                            <Bar 
+                                dataKey="desktop" 
+                                name="Desktop"
+                                fill="url(#colorDesktop)" 
+                                radius={[6, 6, 0, 0]} 
+                                animationDuration={0}
+                            />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
             </GlassCard>
         </div>
     </div>

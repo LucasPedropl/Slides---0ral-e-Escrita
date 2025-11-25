@@ -1,8 +1,9 @@
+
 import React from 'react';
-import { GlassCard } from '../ui/GlassCard';
+import { GlassCard } from '../../ui/GlassCard';
 import { Code2, ArrowRight, Tag } from 'lucide-react';
 
-const Slide7_HtmlCode: React.FC = () => {
+const Slide7: React.FC = () => {
   return (
     <div className="flex flex-col lg:flex-row h-full items-center justify-between gap-8 lg:gap-16 px-4 lg:px-12 w-full relative">
         
@@ -140,4 +141,4 @@ const Slide7_HtmlCode: React.FC = () => {
   );
 };
 
-export default Slide7_HtmlCode;
+export default Slide7;

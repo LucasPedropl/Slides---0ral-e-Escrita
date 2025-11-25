@@ -1,25 +1,27 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from './components/Layout';
-import Slide1_Cover from './components/slides/Slide1_Cover';
-import Slide2_Definition from './components/slides/Slide2_Definition';
-import Slide3_Tech from './components/slides/Slide3_Tech';
-import Slide4_Social from './components/slides/Slide4_Social';
-import Slide5_Editors from './components/slides/Slide5_Editors';
-import Slide6_Structure from './components/slides/Slide6_Structure';
-import Slide7_HtmlCode from './components/slides/Slide7_HtmlCode';
-import Slide8_Economic from './components/slides/Slide8_Economic';
-import Slide9_Success from './components/slides/Slide9_Success';
-import Slide10_SEO from './components/slides/Slide10_SEO';
-import Slide11_Users from './components/slides/Slide11_Users';
-import Slide12_Future from './components/slides/Slide12_Future';
-import Slide13_Conclusion from './components/slides/Slide13_Conclusion';
-import Slide14_End from './components/slides/Slide14_End';
+import Slide1 from './components/slides/Slide1';
+import Slide2 from './components/slides/Slide2';
+import Slide3 from './components/slides/Slide3';
+import Slide4 from './components/slides/Slide4';
+import Slide5 from './components/slides/Slide5';
+import Slide6 from './components/slides/Slide6';
+import Slide7 from './components/slides/Slide7';
+import Slide8 from './components/slides/Slide8';
+import Slide9 from './components/slides/Slide9';
+import Slide10 from './components/slides/Slide10';
+import Slide11 from './components/slides/Slide11';
+import Slide12 from './components/slides/Slide12';
+import Slide13 from './components/slides/Slide13';
+import Slide14 from './components/slides/Slide14';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = 14;
   const [direction, setDirection] = useState(0);
+  const [isPrinting, setIsPrinting] = useState(false);
 
   const nextSlide = useCallback(() => {
     setDirection(1);
@@ -37,6 +39,17 @@ const App: React.FC = () => {
       setCurrentSlide(index);
     }
   };
+
+  const handlePrint = useCallback(() => {
+    setIsPrinting(true);
+    // Wait for render to update with all slides and Recharts to calculate dimensions.
+    // Increased timeout slightly to ensure DOM is fully stable before print dialog invocation
+    setTimeout(() => {
+      window.print();
+      // Reset after print dialog closes
+      setTimeout(() => setIsPrinting(false), 500);
+    }, 1000); 
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -73,6 +86,12 @@ const App: React.FC = () => {
     })
   };
 
+  const slides = [
+    Slide1, Slide2, Slide3, Slide4, Slide5,
+    Slide6, Slide7, Slide8, Slide9, Slide10,
+    Slide11, Slide12, Slide13, Slide14
+  ];
+
   return (
     <Layout
       currentSlide={currentSlide}
@@ -80,8 +99,10 @@ const App: React.FC = () => {
       nextSlide={nextSlide}
       prevSlide={prevSlide}
       goToSlide={goToSlide}
+      onPrint={handlePrint}
     >
-      <div className="relative w-full h-full">
+      {/* Normal View */}
+      <div className="relative w-full h-full print:hidden">
         <AnimatePresence initial={false} mode="wait" custom={direction}>
           <motion.div
             key={currentSlide}
@@ -97,23 +118,26 @@ const App: React.FC = () => {
             }}
             className="w-full h-full flex flex-col justify-center"
           >
-            {currentSlide === 0 && <Slide1_Cover />}
-            {currentSlide === 1 && <Slide2_Definition />}
-            {currentSlide === 2 && <Slide3_Tech />}
-            {currentSlide === 3 && <Slide4_Social />}
-            {currentSlide === 4 && <Slide5_Editors />}
-            {currentSlide === 5 && <Slide6_Structure />}
-            {currentSlide === 6 && <Slide7_HtmlCode />}
-            {currentSlide === 7 && <Slide8_Economic />}
-            {currentSlide === 8 && <Slide9_Success />}
-            {currentSlide === 9 && <Slide10_SEO />}
-            {currentSlide === 10 && <Slide11_Users />}
-            {currentSlide === 11 && <Slide12_Future />}
-            {currentSlide === 12 && <Slide13_Conclusion />}
-            {currentSlide === 13 && <Slide14_End />}
+            {React.createElement(slides[currentSlide])}
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Print Mode View (Renders ALL slides) */}
+      {/* Used opacity-0 to ensure it is layout-calculated (clientWidth > 0) but invisible during preparation. */}
+      {/* Z-index allows it to overlay but pointer-events-none prevents blocking interactions if something goes wrong. */}
+      {isPrinting && (
+        <div className="fixed top-0 left-0 w-full min-w-[1280px] h-full z-50 opacity-0 pointer-events-none overflow-y-auto bg-[#0a0118] print:static print:z-auto print:opacity-100 print:overflow-visible print:min-w-0">
+          {slides.map((SlideComponent, index) => (
+            <div key={index} className="w-full h-screen break-after-page overflow-hidden relative flex flex-col items-center justify-center page-break">
+               {/* Wrapper div to force full width context for child components like charts */}
+               <div className="w-full h-full flex items-center justify-center">
+                  <SlideComponent />
+               </div>
+            </div>
+          ))}
+        </div>
+      )}
     </Layout>
   );
 };

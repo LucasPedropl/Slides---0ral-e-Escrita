@@ -1,25 +1,26 @@
 
 import React from 'react';
 import { GlassCard } from '../../ui/GlassCard';
-import { Palette, ArrowRight, LayoutGrid, Maximize } from 'lucide-react';
+import { Palette, ArrowRight, PaintBucket } from 'lucide-react';
 
 const SlideCSS: React.FC = () => {
   return (
     <div className="flex flex-col lg:flex-row h-full items-center justify-between gap-8 lg:gap-16 px-4 lg:px-12 w-full relative">
         
         {/* Floating Background Decorations */}
-        <div className="absolute top-20 right-10 text-white/5 font-mono text-6xl font-bold rotate-12 pointer-events-none">#grid</div>
+        <div className="absolute top-20 right-10 text-white/5 font-mono text-6xl font-bold rotate-12 pointer-events-none">#color</div>
         <div className="absolute bottom-20 left-10 text-white/5 font-mono text-8xl font-bold -rotate-12 pointer-events-none">CSS</div>
 
         {/* Left: Interactive Cards Glossary */}
         <div className="flex-1 space-y-8 z-10 animate-fade-in-up">
             <div>
                 <h2 className="text-4xl lg:text-5xl font-bold drop-shadow-neon-white leading-tight mb-4">
-                    Organizando com <br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">CSS Grid</span>
+                    Estilizando <br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">os Blocos</span>
                 </h2>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                    Vamos desenhar o mapa do nosso site. Definimos áreas nomeadas para encaixar cada peça do HTML.
+                    Agora damos cor e posição para cada etiqueta que criamos no HTML. <br/>
+                    Transformamos texto puro em um layout visual.
                 </p>
             </div>
 
@@ -27,11 +28,11 @@ const SlideCSS: React.FC = () => {
                 {/* Rule Card 1 */}
                 <div className="group flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all cursor-pointer hover:translate-x-2">
                     <div className="h-12 w-12 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
-                        <LayoutGrid className="w-6 h-6" />
+                        <PaintBucket className="w-6 h-6" />
                     </div>
                     <div>
-                        <h4 className="font-bold text-white text-lg group-hover:text-cyan-300 transition-colors">display: grid</h4>
-                        <p className="text-sm text-gray-400">Ativa o sistema de grade bidimensional super poderoso.</p>
+                        <h4 className="font-bold text-white text-lg group-hover:text-cyan-300 transition-colors">background-color</h4>
+                        <p className="text-sm text-gray-400">Define a cor de fundo de cada bloco.</p>
                     </div>
                      <ArrowRight className="ml-auto text-white/20 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
                 </div>
@@ -39,11 +40,11 @@ const SlideCSS: React.FC = () => {
                 {/* Rule Card 2 */}
                 <div className="group flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-purple-500/10 hover:border-purple-500/50 transition-all cursor-pointer hover:translate-x-2">
                     <div className="h-12 w-12 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                        <Maximize className="w-6 h-6" />
+                        px
                     </div>
                     <div>
-                        <h4 className="font-bold text-white text-lg group-hover:text-purple-300 transition-colors">grid-template-areas</h4>
-                        <p className="text-sm text-gray-400">Desenha o layout visualmente usando nomes.</p>
+                        <h4 className="font-bold text-white text-lg group-hover:text-purple-300 transition-colors">width & height</h4>
+                        <p className="text-sm text-gray-400">Define a largura e altura das áreas.</p>
                     </div>
                      <ArrowRight className="ml-auto text-white/20 group-hover:text-purple-400 group-hover:translate-x-1 transition-all" />
                 </div>
@@ -71,38 +72,35 @@ const SlideCSS: React.FC = () => {
                     </div>
 
                     {/* Editor Content */}
-                    <GlassCard className="rounded-t-none bg-[#0d0d0d] p-6 font-mono text-sm md:text-base border-t-0 shadow-inner h-[420px] overflow-hidden">
+                    <GlassCard className="rounded-t-none bg-[#0d0d0d] p-6 font-mono text-sm md:text-base border-t-0 shadow-inner h-[380px] overflow-hidden">
                         <div className="flex h-full">
                              {/* Line Numbers */}
                             <div className="text-gray-600 pr-4 border-r border-gray-800 select-none text-right font-mono">
-                                {Array.from({length: 13}, (_, i) => i + 1).map(num => (
+                                {Array.from({length: 12}, (_, i) => i + 1).map(num => (
                                     <div key={num} className="leading-relaxed">{num}</div>
                                 ))}
                             </div>
                             
                             {/* Code */}
-                            {/* CSS Code Block */}
 <pre className="text-gray-300 leading-relaxed pl-4 font-mono text-sm w-full overflow-hidden">
   <code>
-    <span className="text-gray-500 italic">/* Configuração da Grade */</span>
+    <span className="text-gray-500 italic">/* Cores dos Blocos */</span>
     {"\n"}
-    <span className="text-green-400">.grid-layout</span> {"{"}
+    <span className="text-green-400">header</span> {"{"} <span className="text-blue-300">background</span>: <span className="text-purple-400">purple</span>; <span className="text-blue-300">height</span>: <span className="text-green-300">60px</span>; {"}"}
     {"\n"}
-    {"  "}<span className="text-blue-300">display</span>: <span className="text-orange-300">grid</span>; <span className="text-blue-300">gap</span>: <span className="text-green-300">16px</span>; <span className="text-blue-300">height</span>: <span className="text-green-300">100vh</span>;
+    <span className="text-green-400">footer</span> {"{"} <span className="text-blue-300">background</span>: <span className="text-gray-400">gray</span>;   <span className="text-blue-300">height</span>: <span className="text-green-300">50px</span>; {"}"}
     {"\n\n"}
-    {"  "}<span className="text-blue-300">grid-template-areas</span>:
-    {"\n"}
-    {"    "}<span className="text-yellow-300">"header header header"</span>
-    {"\n"}
-    {"    "}<span className="text-yellow-300">"nav    main   aside "</span>;
+    <span className="text-green-400">.meio</span>   {"{"} <span className="text-blue-300">display</span>: <span className="text-orange-300">flex</span>; <span className="text-blue-300">gap</span>: <span className="text-green-300">10px</span>; {"}"}
     {"\n\n"}
-    {"  "}<span className="text-blue-300">grid-template-columns</span>: <span className="text-green-300">200px 1fr 250px</span>;
+    <span className="text-green-400">nav</span>    {"{"} <span className="text-blue-300">background</span>: <span className="text-blue-400">blue</span>;   <span className="text-blue-300">width</span>: <span className="text-green-300">20%</span>; {"}"}
     {"\n"}
-    {"}"}
+    <span className="text-green-400">main</span>   {"{"} <span className="text-blue-300">background</span>: <span className="text-green-400">green</span>;  <span className="text-blue-300">width</span>: <span className="text-green-300">60%</span>; {"}"}
+    {"\n"}
+    <span className="text-green-400">aside</span>  {"{"} <span className="text-blue-300">background</span>: <span className="text-orange-400">orange</span>; <span className="text-blue-300">width</span>: <span className="text-green-300">20%</span>; {"}"}
     {"\n\n"}
-    <span className="text-green-400">.top-bar</span> {"{"} <span className="text-blue-300">grid-area</span>: <span className="text-orange-300">header</span>; <span className="text-blue-300">bg</span>: <span className="text-orange-300">#1a1a1a</span>; {"}"}
+    <span className="text-gray-500 italic">/* Layout Flexbox alinha os */</span>
     {"\n"}
-    <span className="text-green-400">.content</span> {"{"} <span className="text-blue-300">grid-area</span>: <span className="text-orange-300">main</span>; {"}"}
+    <span className="text-gray-500 italic">/* 3 itens do meio lado a lado */</span>
   </code>
 </pre>
                         </div>

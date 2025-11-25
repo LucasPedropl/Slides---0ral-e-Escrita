@@ -48,7 +48,7 @@ const Slide11: React.FC = () => {
                  
                  <GlassCard className="h-full w-full p-0 rounded-[2rem] lg:rounded-r-[2.5rem] lg:rounded-l-none border-white/10 group-hover:border-blue-500/50 overflow-hidden relative isolate bg-[#050510]">
                     <img 
-                        src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1000&auto=format&fit=crop" 
+                        src="https://www.gsteel.com.br/blog/wp-content/uploads/2022/02/organizar-cozinha-1024x682.jpeg" 
                         alt="Professional Kitchen" 
                         className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
                     />

@@ -1,6 +1,7 @@
-import React from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { NavProps } from '../types';
-import { Circle, ChevronLeft, ChevronRight, Menu, Printer } from 'lucide-react';
+import { Circle, ChevronLeft, ChevronRight, Menu, Printer, Maximize, Minimize, FileText } from 'lucide-react';
 
 interface LayoutProps extends NavProps {
   children: React.ReactNode;
@@ -13,8 +14,68 @@ const Layout: React.FC<LayoutProps> = ({
   nextSlide, 
   prevSlide,
   goToSlide,
-  onPrint
+  onPrint,
+  onToggleReport
 }) => {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        setIsFullscreen(true);
+      }).catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message} (${err.name})`);
+      });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().then(() => {
+          setIsFullscreen(false);
+        });
+      }
+    }
+  };
+
+  // Logic to handle auto-hiding controls in fullscreen
+  useEffect(() => {
+    const handleMouseMove = () => {
+      // Always show controls on movement
+      setShowControls(true);
+
+      // If in fullscreen, restart the hide timer
+      if (isFullscreen) {
+        if (controlsTimeoutRef.current) {
+          clearTimeout(controlsTimeoutRef.current);
+        }
+        controlsTimeoutRef.current = setTimeout(() => {
+          setShowControls(false);
+        }, 3000); // Hide after 3 seconds of inactivity
+      }
+    };
+
+    if (isFullscreen) {
+      window.addEventListener('mousemove', handleMouseMove);
+      // Start the timer immediately upon entering fullscreen
+      controlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 3000);
+    } else {
+      // If not fullscreen, always show controls and clear timers
+      setShowControls(true);
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, [isFullscreen]);
+
   return (
     // Changed h-screen to h-full because it is now wrapped in a fixed-size container
     <div className="h-full w-full bg-background text-white font-sans overflow-hidden flex flex-col relative selection:bg-primary selection:text-white print:h-auto print:overflow-visible">
@@ -41,6 +102,15 @@ const Layout: React.FC<LayoutProps> = ({
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
              </button>
           ))}
+          {/* New Relatório Link */}
+          <button 
+            onClick={onToggleReport}
+            className="hover:text-green-400 transition-colors relative group flex items-center gap-2"
+          >
+             <FileText className="w-4 h-4" />
+             Relatório
+             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full"></span>
+          </button>
         </nav>
         <button className="md:hidden text-white">
             <Menu className="w-6 h-6" />
@@ -55,11 +125,29 @@ const Layout: React.FC<LayoutProps> = ({
       </main>
 
       {/* Navigation Controls (Hidden on Print) */}
-      <div className="fixed bottom-8 right-8 z-50 flex items-center gap-6 backdrop-blur-sm bg-black/20 p-3 rounded-full border border-white/10 shadow-glass print:hidden">
+      <div 
+        className={`fixed bottom-8 right-8 z-50 flex items-center gap-6 backdrop-blur-sm bg-black/20 p-3 rounded-full border border-white/10 shadow-glass print:hidden transition-all duration-500 ${
+          !showControls && isFullscreen ? 'opacity-0 translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'
+        }`}
+        onMouseEnter={() => setShowControls(true)} // Keep visible if hovering directly over buttons
+      >
         <span className="text-xs text-gray-400 font-mono ml-2">
           {String(currentSlide + 1).padStart(2, '0')} <span className="text-gray-600">/</span> {String(totalSlides).padStart(2, '0')}
         </span>
         
+        {/* Fullscreen Button */}
+        <button 
+             onClick={toggleFullscreen}
+             className="p-3 rounded-full bg-white/5 hover:bg-white/20 hover:text-blue-400 transition-all active:scale-95 group"
+             title={isFullscreen ? "Sair da Tela Cheia" : "Tela Cheia"}
+        >
+             {isFullscreen ? (
+                <Minimize className="w-5 h-5 group-hover:scale-110 transition-transform" />
+             ) : (
+                <Maximize className="w-5 h-5 group-hover:scale-110 transition-transform" />
+             )}
+        </button>
+
         {/* Print Button */}
         {onPrint && (
            <button 

@@ -9,4 +9,5 @@ export interface NavProps {
   nextSlide: () => void;
   prevSlide: () => void;
   onPrint?: () => void;
+  onToggleReport?: () => void;
 }

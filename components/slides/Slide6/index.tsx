@@ -44,8 +44,8 @@ const Slide6: React.FC = () => {
                  <div className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-blue-500/10 hover:border-blue-500/30 transition-colors group">
                      <div className="w-10 h-10 rounded bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs border border-blue-500/30">M</div>
                      <div>
-                         <span className="text-blue-200 font-bold text-sm block">MAIN (Principal)</span>
-                         <span className="text-gray-400 text-xs">O conteúdo que o usuário veio ver.</span>
+                         <span className="text-blue-200 font-bold text-sm block">MEIO (Nav + Main + Aside)</span>
+                         <span className="text-gray-400 text-xs">Conteúdo principal ladeado por navegação.</span>
                      </div>
                  </div>
 
@@ -63,47 +63,52 @@ const Slide6: React.FC = () => {
         <div className="relative z-10 w-full h-full flex items-center justify-center order-1 lg:order-2 perspective-1000">
              
              {/* The Blueprint Sheet */}
-             <div className="w-full max-w-md bg-[#0f172a]/80 backdrop-blur-xl border-2 border-dashed border-cyan-500/30 rounded-2xl p-6 flex flex-col gap-4 shadow-2xl transform rotate-y-[-10deg] rotate-x-[5deg] hover:rotate-0 transition-transform duration-700">
+             <div className="w-full max-w-md bg-[#0f172a]/80 backdrop-blur-xl border-2 border-dashed border-cyan-500/30 rounded-2xl p-6 flex flex-col gap-4 shadow-2xl transform rotate-y-[-10deg] rotate-x-[5deg] hover:rotate-0 transition-transform duration-700 h-[500px]">
                 
                 <div className="absolute -top-3 left-6 bg-cyan-900 text-cyan-200 text-xs px-2 py-1 rounded border border-cyan-500/50 font-mono">
-                    wireframe_v1.0
+                    wireframe_v2.0
                 </div>
 
                 {/* Header Block */}
-                <div className="w-full h-16 rounded-xl bg-purple-500/10 border border-purple-500/40 flex items-center justify-between px-4 group hover:bg-purple-500/20 transition-colors relative">
+                <div className="w-full h-16 rounded-xl bg-purple-500/10 border border-purple-500/40 flex items-center justify-between px-4 group hover:bg-purple-500/20 transition-colors relative flex-shrink-0">
                     <span className="text-purple-300 font-bold text-sm tracking-wider">HEADER</span>
                     <span className="text-[10px] font-mono bg-purple-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;header&gt;</span>
                 </div>
 
-                {/* Nav Block */}
-                <div className="w-full h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-between px-4 group hover:bg-cyan-500/20 transition-colors relative">
-                    <span className="text-cyan-300 font-bold text-xs tracking-wider">NAV</span>
-                    <span className="text-[10px] font-mono bg-cyan-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;nav&gt;</span>
-                </div>
+                {/* Middle Section (Nav - Main - Aside) */}
+                <div className="flex-1 flex gap-4 min-h-0">
+                    
+                    {/* Nav (Left Sidebar) */}
+                    <div className="w-1/5 rounded-xl bg-cyan-500/10 border border-cyan-500/40 p-2 flex flex-col items-center gap-2 group hover:bg-cyan-500/20 transition-colors relative">
+                        <span className="text-cyan-300 font-bold text-[10px] tracking-wider">NAV</span>
+                        <div className="w-full h-1 bg-cyan-400/20 rounded"></div>
+                        <div className="w-full h-1 bg-cyan-400/20 rounded"></div>
+                        <div className="w-full h-1 bg-cyan-400/20 rounded"></div>
+                        <span className="absolute bottom-2 left-1 text-[8px] font-mono bg-cyan-500 text-white px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;nav&gt;</span>
+                    </div>
 
-                {/* Middle Section */}
-                <div className="flex-1 flex gap-4 min-h-[180px]">
-                    {/* Main */}
-                    <div className="flex-[2] rounded-xl bg-blue-500/10 border border-blue-500/40 p-4 flex flex-col gap-2 group hover:bg-blue-500/20 transition-colors relative">
+                    {/* Main (Center) */}
+                    <div className="flex-1 rounded-xl bg-blue-500/10 border border-blue-500/40 p-4 flex flex-col gap-2 group hover:bg-blue-500/20 transition-colors relative">
                          <div className="flex justify-between items-center">
                             <span className="text-blue-300 font-bold text-sm tracking-wider">MAIN</span>
                             <span className="text-[10px] font-mono bg-blue-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;main&gt;</span>
                          </div>
                          <div className="w-full h-2 bg-blue-400/20 rounded mt-2"></div>
                          <div className="w-3/4 h-2 bg-blue-400/20 rounded"></div>
-                         <div className="w-full h-24 bg-blue-400/10 rounded mt-2 border border-blue-400/10"></div>
+                         <div className="w-full h-full bg-blue-400/10 rounded mt-2 border border-blue-400/10"></div>
                     </div>
                     
-                    {/* Aside */}
-                    <div className="flex-1 rounded-xl bg-pink-500/10 border border-pink-500/40 p-4 flex flex-col items-center gap-2 group hover:bg-pink-500/20 transition-colors relative">
-                        <span className="text-pink-300 font-bold text-xs tracking-wider">ASIDE</span>
-                        <div className="w-full h-full bg-pink-400/10 rounded border border-pink-400/10"></div>
-                        <span className="absolute bottom-2 right-2 text-[10px] font-mono bg-pink-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;aside&gt;</span>
+                    {/* Aside (Right Sidebar) */}
+                    <div className="w-1/4 rounded-xl bg-pink-500/10 border border-pink-500/40 p-2 flex flex-col items-center gap-2 group hover:bg-pink-500/20 transition-colors relative">
+                        <span className="text-pink-300 font-bold text-[10px] tracking-wider">ASIDE</span>
+                        <div className="w-full h-1/3 bg-pink-400/10 rounded border border-pink-400/10"></div>
+                        <div className="w-full h-1/3 bg-pink-400/10 rounded border border-pink-400/10"></div>
+                        <span className="absolute bottom-2 right-1 text-[8px] font-mono bg-pink-500 text-white px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;aside&gt;</span>
                     </div>
                 </div>
 
                 {/* Footer Block */}
-                <div className="w-full h-12 rounded-xl bg-gray-500/10 border border-gray-500/40 flex items-center justify-between px-4 group hover:bg-gray-500/20 transition-colors relative">
+                <div className="w-full h-12 rounded-xl bg-gray-500/10 border border-gray-500/40 flex items-center justify-between px-4 group hover:bg-gray-500/20 transition-colors relative flex-shrink-0">
                     <span className="text-gray-300 font-bold text-sm tracking-wider">FOOTER</span>
                     <span className="text-[10px] font-mono bg-gray-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;footer&gt;</span>
                 </div>

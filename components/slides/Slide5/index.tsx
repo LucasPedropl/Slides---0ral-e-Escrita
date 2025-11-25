@@ -56,24 +56,24 @@ const Slide5: React.FC = () => {
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-blue-600/20 rounded-full blur-[80px] pointer-events-none"></div>
 
              {/* The "Notepad" (Background Element) */}
-             <div className="absolute top-[10%] left-[10%] w-[250px] aspect-[3/4] bg-white text-black p-4 rounded-sm shadow-xl rotate-[-6deg] opacity-60 hover:opacity-100 transition-all duration-500 z-0 border border-gray-300">
-                <div className="border-b border-gray-300 pb-2 mb-2 font-serif text-xs flex justify-between">
+             <div className="absolute top-[-5%] left-[0%] w-[400px] aspect-[4/3] bg-white text-black p-6 rounded-sm shadow-xl rotate-[-8deg] opacity-60 hover:opacity-100 transition-all duration-500 z-0 border border-gray-300">
+                <div className="border-b border-gray-300 pb-2 mb-2 font-serif text-sm flex justify-between">
                     <span>sem_titulo.txt</span>
                     <span>X</span>
                 </div>
-                <div className="font-mono text-[10px] opacity-70">
+                <div className="font-mono text-xs opacity-70">
                     &lt;html&gt;<br/>
                     &lt;body&gt;<br/>
                     &lt;h1&gt;Ola&lt;/h1&gt;<br/>
                     &lt;/body&gt;
                 </div>
-                <div className="absolute bottom-10 left-0 w-full text-center text-red-500 font-bold text-sm rotate-[-15deg] border-2 border-red-500 p-1 mx-8 rounded">
+                <div className="absolute bottom-10 left-0 w-full text-center text-red-500 font-bold text-lg rotate-[-15deg] border-2 border-red-500 p-2 mx-8 rounded">
                     MUITO LENTO
                 </div>
              </div>
 
              {/* The VS Code (Main Element) */}
-             <div className="relative w-[90%] md:w-[80%] aspect-video bg-[#1e1e1e] rounded-xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.2)] border border-white/10 z-10 transform rotate-3 hover:rotate-0 transition-all duration-700 group">
+             <div className="relative w-full md:w-[95%] aspect-video bg-[#1e1e1e] rounded-xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.2)] border border-white/10 z-10 transform rotate-3 hover:rotate-0 transition-all duration-700 group">
                 
                 {/* Title Bar */}
                 <div className="h-8 bg-[#252526] flex items-center px-4 justify-between border-b border-black/20">

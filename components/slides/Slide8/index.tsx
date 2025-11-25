@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { GlassCard } from '../../ui/GlassCard';
-import { Smartphone, Monitor, Globe, Menu, LayoutGrid } from 'lucide-react';
+import { Smartphone, Monitor, Globe, Menu, LayoutGrid, Home, PieChart, Wallet, Settings, Bell, Search, TrendingUp, ArrowUpRight, ArrowDownRight, User } from 'lucide-react';
 
 const Slide8: React.FC = () => {
   return (
@@ -72,40 +71,101 @@ const Slide8: React.FC = () => {
                     {/* Laptop Camera */}
                     <div className="absolute top-2 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#333] border border-[#444]"></div>
                     
-                    {/* Laptop Screen Content (Desktop Layout) */}
-                    <div className="absolute inset-0 m-4 mt-6 bg-white rounded flex flex-col overflow-hidden">
-                        {/* Mock Navbar */}
-                        <div className="h-8 bg-purple-600 flex items-center justify-between px-4">
-                            <div className="w-20 h-3 bg-white/30 rounded"></div>
-                            <div className="flex gap-2">
-                                <div className="w-10 h-2 bg-white/30 rounded"></div>
-                                <div className="w-10 h-2 bg-white/30 rounded"></div>
-                                <div className="w-10 h-2 bg-white/30 rounded"></div>
+                    {/* Laptop Screen Content (Desktop Dashboard) */}
+                    <div className="absolute inset-0 m-4 mt-6 bg-[#0f172a] rounded flex overflow-hidden font-sans text-white">
+                        
+                        {/* Sidebar */}
+                        <div className="w-14 bg-[#1e293b] flex flex-col items-center py-4 gap-6 border-r border-white/5">
+                            <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center font-bold">L</div>
+                            <div className="flex flex-col gap-6 mt-4">
+                                <Home className="w-4 h-4 text-purple-400" />
+                                <PieChart className="w-4 h-4 text-gray-400" />
+                                <Wallet className="w-4 h-4 text-gray-400" />
+                                <Settings className="w-4 h-4 text-gray-400 mt-auto" />
                             </div>
                         </div>
-                        {/* Mock Hero */}
-                        <div className="h-32 bg-gray-100 flex items-center px-8 gap-8">
-                            <div className="flex-1 space-y-2">
-                                <div className="w-3/4 h-4 bg-gray-300 rounded"></div>
-                                <div className="w-1/2 h-3 bg-gray-200 rounded"></div>
-                                <div className="w-24 h-6 bg-purple-500 rounded mt-2"></div>
+
+                        {/* Main Content */}
+                        <div className="flex-1 flex flex-col">
+                            {/* Header */}
+                            <div className="h-10 border-b border-white/5 flex items-center justify-between px-4 bg-[#0f172a]">
+                                <h3 className="text-[10px] font-bold text-gray-200">Dashboard Financeiro</h3>
+                                <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-2 bg-[#1e293b] px-2 py-1 rounded-md border border-white/5">
+                                        <Search className="w-3 h-3 text-gray-400" />
+                                        <span className="text-[8px] text-gray-500">Buscar...</span>
+                                    </div>
+                                    <Bell className="w-3 h-3 text-gray-400" />
+                                    <div className="w-5 h-5 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full"></div>
+                                </div>
                             </div>
-                            <div className="w-32 h-20 bg-purple-200 rounded"></div>
-                        </div>
-                        {/* Mock Grid (3 Columns) */}
-                        <div className="flex-1 bg-white p-4">
-                            <div className="grid grid-cols-3 gap-4 h-full">
-                                <div className="bg-blue-50 rounded border border-blue-100 p-2 space-y-2">
-                                    <div className="w-8 h-8 rounded bg-blue-200"></div>
-                                    <div className="w-full h-2 bg-gray-200 rounded"></div>
+
+                            {/* Dashboard Grid */}
+                            <div className="p-4 grid grid-cols-3 gap-3">
+                                {/* Stat Card 1 */}
+                                <div className="bg-[#1e293b] p-3 rounded-xl border border-white/5">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div className="p-1.5 bg-green-500/10 rounded-lg"><TrendingUp className="w-3 h-3 text-green-400" /></div>
+                                        <span className="text-[8px] text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">+12% <ArrowUpRight className="w-2 h-2"/></span>
+                                    </div>
+                                    <div className="text-[9px] text-gray-400">Receita Total</div>
+                                    <div className="text-sm font-bold text-white">R$ 45.231</div>
                                 </div>
-                                <div className="bg-pink-50 rounded border border-pink-100 p-2 space-y-2">
-                                    <div className="w-8 h-8 rounded bg-pink-200"></div>
-                                    <div className="w-full h-2 bg-gray-200 rounded"></div>
+
+                                {/* Stat Card 2 */}
+                                <div className="bg-[#1e293b] p-3 rounded-xl border border-white/5">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div className="p-1.5 bg-orange-500/10 rounded-lg"><Wallet className="w-3 h-3 text-orange-400" /></div>
+                                        <span className="text-[8px] text-red-400 bg-red-500/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">-2% <ArrowDownRight className="w-2 h-2"/></span>
+                                    </div>
+                                    <div className="text-[9px] text-gray-400">Despesas</div>
+                                    <div className="text-sm font-bold text-white">R$ 12.040</div>
                                 </div>
-                                <div className="bg-orange-50 rounded border border-orange-100 p-2 space-y-2">
-                                    <div className="w-8 h-8 rounded bg-orange-200"></div>
-                                    <div className="w-full h-2 bg-gray-200 rounded"></div>
+
+                                {/* Stat Card 3 */}
+                                <div className="bg-[#1e293b] p-3 rounded-xl border border-white/5">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div className="p-1.5 bg-blue-500/10 rounded-lg"><User className="w-3 h-3 text-blue-400" /></div>
+                                        <span className="text-[8px] text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">+54 <ArrowUpRight className="w-2 h-2"/></span>
+                                    </div>
+                                    <div className="text-[9px] text-gray-400">Novos Clientes</div>
+                                    <div className="text-sm font-bold text-white">1,203</div>
+                                </div>
+
+                                {/* Big Chart Area (Spans 2 cols) */}
+                                <div className="col-span-2 bg-[#1e293b] p-3 rounded-xl border border-white/5 h-24 flex flex-col">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <span className="text-[9px] font-bold text-gray-300">Crescimento Anual</span>
+                                        <div className="flex gap-1">
+                                            <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                                            <div className="w-2 h-2 rounded-full bg-gray-600"></div>
+                                        </div>
+                                    </div>
+                                    <div className="flex-1 flex items-end justify-between gap-2 px-2">
+                                        <div className="w-full bg-purple-500/20 h-[30%] rounded-t-sm relative group"><div className="absolute bottom-0 w-full bg-purple-500 h-[60%] rounded-t-sm"></div></div>
+                                        <div className="w-full bg-purple-500/20 h-[50%] rounded-t-sm relative group"><div className="absolute bottom-0 w-full bg-purple-500 h-[70%] rounded-t-sm"></div></div>
+                                        <div className="w-full bg-purple-500/20 h-[40%] rounded-t-sm relative group"><div className="absolute bottom-0 w-full bg-purple-500 h-[40%] rounded-t-sm"></div></div>
+                                        <div className="w-full bg-purple-500/20 h-[70%] rounded-t-sm relative group"><div className="absolute bottom-0 w-full bg-purple-500 h-[80%] rounded-t-sm"></div></div>
+                                        <div className="w-full bg-purple-500/20 h-[60%] rounded-t-sm relative group"><div className="absolute bottom-0 w-full bg-purple-500 h-[90%] rounded-t-sm"></div></div>
+                                        <div className="w-full bg-purple-500/20 h-[80%] rounded-t-sm relative group"><div className="absolute bottom-0 w-full bg-purple-500 h-[100%] rounded-t-sm animate-pulse"></div></div>
+                                    </div>
+                                </div>
+
+                                {/* Recent Activity (Spans 1 col) */}
+                                <div className="col-span-1 bg-[#1e293b] p-3 rounded-xl border border-white/5 h-24 flex flex-col gap-2">
+                                    <span className="text-[9px] font-bold text-gray-300">Recentes</span>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 rounded-full bg-white/10"></div>
+                                        <div className="h-1.5 w-12 bg-white/10 rounded"></div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 rounded-full bg-white/10"></div>
+                                        <div className="h-1.5 w-10 bg-white/10 rounded"></div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 rounded-full bg-white/10"></div>
+                                        <div className="h-1.5 w-14 bg-white/10 rounded"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -122,35 +182,52 @@ const Slide8: React.FC = () => {
                     {/* Phone Notch */}
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-black rounded-b-xl z-30"></div>
                     
-                    {/* Phone Screen Content (Mobile Layout) */}
-                    <div className="absolute inset-1 bg-white rounded-[1.8rem] overflow-hidden flex flex-col">
-                        {/* Mock Navbar (Burger Menu) */}
-                        <div className="h-10 bg-purple-600 flex items-center justify-between px-3 pt-2">
-                            <div className="w-12 h-2 bg-white/30 rounded"></div>
-                            <Menu className="w-4 h-4 text-white" />
+                    {/* Phone Screen Content (Mobile Dashboard) */}
+                    <div className="absolute inset-1 bg-[#0f172a] rounded-[1.8rem] overflow-hidden flex flex-col font-sans text-white">
+                        
+                        {/* Header (Simplified) */}
+                        <div className="h-10 border-b border-white/5 flex items-center justify-between px-3 pt-3 bg-[#1e293b]">
+                            <Menu className="w-3 h-3 text-white" />
+                            <span className="text-[8px] font-bold">Finanças</span>
+                            <div className="w-4 h-4 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full"></div>
                         </div>
 
-                        {/* Mock Hero (Stacked) */}
-                        <div className="bg-gray-100 p-3 flex flex-col items-center text-center gap-2 pb-4">
-                            <div className="w-16 h-16 bg-purple-200 rounded-full"></div>
-                            <div className="w-full h-3 bg-gray-300 rounded"></div>
-                            <div className="w-2/3 h-2 bg-gray-200 rounded"></div>
-                            <div className="w-20 h-5 bg-purple-500 rounded mt-1"></div>
-                        </div>
+                        {/* Stacked Content */}
+                        <div className="p-2 flex flex-col gap-2 overflow-y-hidden">
+                             {/* Stat Card 1 (Full Width) */}
+                             <div className="bg-[#1e293b] p-2 rounded-lg border border-white/5 flex items-center justify-between">
+                                <div className="flex flex-col">
+                                    <span className="text-[7px] text-gray-400">Receita</span>
+                                    <span className="text-[10px] font-bold">R$ 45k</span>
+                                </div>
+                                <div className="p-1 bg-green-500/10 rounded"><TrendingUp className="w-3 h-3 text-green-400" /></div>
+                            </div>
 
-                        {/* Mock Grid (1 Column / Stacked) */}
-                        <div className="flex-1 bg-white p-3 space-y-2 overflow-hidden">
-                            <div className="bg-blue-50 rounded p-2 flex items-center gap-2">
-                                <div className="w-6 h-6 rounded bg-blue-200 shrink-0"></div>
-                                <div className="w-full h-1.5 bg-gray-200 rounded"></div>
+                             {/* Stat Card 2 (Full Width) */}
+                             <div className="bg-[#1e293b] p-2 rounded-lg border border-white/5 flex items-center justify-between">
+                                <div className="flex flex-col">
+                                    <span className="text-[7px] text-gray-400">Despesas</span>
+                                    <span className="text-[10px] font-bold">R$ 12k</span>
+                                </div>
+                                <div className="p-1 bg-orange-500/10 rounded"><Wallet className="w-3 h-3 text-orange-400" /></div>
                             </div>
-                            <div className="bg-pink-50 rounded p-2 flex items-center gap-2">
-                                <div className="w-6 h-6 rounded bg-pink-200 shrink-0"></div>
-                                <div className="w-full h-1.5 bg-gray-200 rounded"></div>
+
+                            {/* Chart (Compressed) */}
+                            <div className="bg-[#1e293b] p-2 rounded-lg border border-white/5 h-16 flex items-end gap-1">
+                                <div className="w-full bg-purple-500 h-[40%] rounded-t-sm"></div>
+                                <div className="w-full bg-purple-500 h-[70%] rounded-t-sm"></div>
+                                <div className="w-full bg-purple-500 h-[50%] rounded-t-sm"></div>
+                                <div className="w-full bg-purple-500 h-[80%] rounded-t-sm"></div>
+                                <div className="w-full bg-purple-500 h-[60%] rounded-t-sm"></div>
                             </div>
-                            <div className="bg-orange-50 rounded p-2 flex items-center gap-2">
-                                <div className="w-6 h-6 rounded bg-orange-200 shrink-0"></div>
-                                <div className="w-full h-1.5 bg-gray-200 rounded"></div>
+
+                             {/* Stat Card 3 */}
+                             <div className="bg-[#1e293b] p-2 rounded-lg border border-white/5 flex items-center justify-between">
+                                <div className="flex flex-col">
+                                    <span className="text-[7px] text-gray-400">Clientes</span>
+                                    <span className="text-[10px] font-bold">1.2k</span>
+                                </div>
+                                <div className="p-1 bg-blue-500/10 rounded"><User className="w-3 h-3 text-blue-400" /></div>
                             </div>
                         </div>
                     </div>

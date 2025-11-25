@@ -15,11 +15,6 @@ const Slide4: React.FC = () => {
            <p className="text-gray-300 text-lg">Existem dois caminhos principais para dar vida a um site.</p>
         </div>
 
-        {/* VS Badge (Desktop Only) */}
-        <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-16 h-16 bg-white text-black font-black text-xl rounded-full items-center justify-center border-4 border-black shadow-[0_0_30px_rgba(255,255,255,0.5)] animate-bounce">
-            VS
-        </div>
-
         {/* Main Content - Split Layout */}
         <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto h-[55%] gap-6 lg:gap-0">
 
@@ -65,6 +60,13 @@ const Slide4: React.FC = () => {
                     </div>
                  </div>
               </GlassCard>
+           </div>
+
+           {/* Divider with Floating Badge (Desktop Only) */}
+           <div className="hidden lg:flex relative w-0 flex-none items-center justify-center z-30">
+              <div className="absolute w-16 h-16 bg-white text-black font-black text-xl rounded-full flex items-center justify-center border-4 border-black shadow-[0_0_30px_rgba(255,255,255,0.5)] animate-bounce">
+                  VS
+              </div>
            </div>
 
            {/* Option 2: Programming (Pro-Code) */}

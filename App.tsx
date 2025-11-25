@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from './components/Layout';
 import { ScaleWrapper } from './components/ScaleWrapper';
+import ReportView from './components/ReportView';
 import Slide1 from './components/slides/Slide1';
 import Slide2 from './components/slides/Slide2';
 import Slide3 from './components/slides/Slide3';
@@ -19,6 +20,7 @@ import Slide14 from './components/slides/Slide14';
 import SlideCSS from './components/slides/SlideCSS';
 import SlideJS from './components/slides/SlideJS';
 import SlideResult from './components/slides/SlideResult';
+import SlideCodeOverview from './components/slides/SlideCodeOverview';
 import { AnimatePresence, motion } from 'framer-motion';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
@@ -26,19 +28,38 @@ import { Loader2 } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 17; // Updated total slides count (Added SlideResult)
+  const totalSlides = 18; 
   const [direction, setDirection] = useState(0);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  
+  // New State for Report View
+  const [showReport, setShowReport] = useState(false);
 
   const nextSlide = useCallback(() => {
     setDirection(1);
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    setCurrentSlide((prev) => {
+      // Check if document is in fullscreen mode
+      if (document.fullscreenElement) {
+        // If in fullscreen, prevent looping from last slide to first
+        return prev === totalSlides - 1 ? prev : prev + 1;
+      }
+      // Normal behavior: loop back to start
+      return (prev + 1) % totalSlides;
+    });
   }, [totalSlides]);
 
   const prevSlide = useCallback(() => {
     setDirection(-1);
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    setCurrentSlide((prev) => {
+      // Check if document is in fullscreen mode
+      if (document.fullscreenElement) {
+        // If in fullscreen, prevent looping from first slide to last
+        return prev === 0 ? prev : prev - 1;
+      }
+      // Normal behavior: loop back to end
+      return (prev - 1 + totalSlides) % totalSlides;
+    });
   }, [totalSlides]);
 
   const goToSlide = (index: number) => {
@@ -52,7 +73,6 @@ const App: React.FC = () => {
     setIsGeneratingPdf(true);
     setLoadingProgress(0);
 
-    // Give React time to render the hidden print container
     setTimeout(async () => {
         const printContainer = document.getElementById('print-container');
         if (!printContainer) {
@@ -71,7 +91,6 @@ const App: React.FC = () => {
 
             for (let i = 0; i < slides.length; i++) {
                 const slide = slides[i];
-                // Update progress
                 setLoadingProgress(Math.round(((i) / slides.length) * 100));
 
                 const canvas = await html2canvas(slide, {
@@ -103,10 +122,13 @@ const App: React.FC = () => {
             setIsGeneratingPdf(false);
             setLoadingProgress(0);
         }
-    }, 1000); // 1 second wait to ensure fonts and layout are settled in the hidden container
+    }, 1000); 
   }, []);
 
   useEffect(() => {
+    // Disable slide navigation keys when in Report View
+    if (showReport) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
         nextSlide();
@@ -116,7 +138,7 @@ const App: React.FC = () => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide]);
+  }, [nextSlide, prevSlide, showReport]);
 
   const variants = {
     enter: (direction: number) => ({
@@ -141,38 +163,31 @@ const App: React.FC = () => {
     })
   };
 
-  // Reordered Slides:
-  // 1. Intro
-  // 2. How it works
-  // 3. Front vs Back
-  // 4. Ways to Build
-  // 5. Core Tech
-  // 6. IDE
-  // 7. Tags (HTML Code)
-  // 8. Styles (CSS Code)
-  // 9. Script (JS Code)
-  // 10. RESULT (New)
-  // 11. Anatomy (Blueprint)
-  // 12. Responsive
   const slides = [
     Slide1,
     Slide2,
-    Slide11, // Front vs Back
-    Slide4,  // Forms of Building
-    Slide3,  // Core Tech
-    Slide5,  // IDE
-    Slide7,  // Tags (HTML Code)
-    SlideCSS,// Styles (CSS Code)
-    SlideJS, // Script (JS Code)
-    SlideResult, // Live Result (New Slide)
-    Slide6,  // Anatomy
-    Slide8,  // Responsive
+    Slide11,
+    Slide4,
+    Slide3,
+    Slide5,
+    Slide7,
+    SlideCSS,
+    SlideJS,
+    SlideCodeOverview,
+    SlideResult,
+    Slide6,
+    Slide8,
     Slide9,
     Slide10,
     Slide12,
     Slide13,
     Slide14
   ];
+
+  // If Report View is active, render it directly (bypassing ScaleWrapper and Layout)
+  if (showReport) {
+    return <ReportView onBack={() => setShowReport(false)} />;
+  }
 
   const MainContent = (
     <Layout
@@ -182,6 +197,7 @@ const App: React.FC = () => {
       prevSlide={prevSlide}
       goToSlide={goToSlide}
       onPrint={handlePrint}
+      onToggleReport={() => setShowReport(true)}
     >
       <div className="relative w-full h-full print:hidden">
         <AnimatePresence initial={false} mode="wait" custom={direction}>
@@ -230,13 +246,11 @@ const App: React.FC = () => {
           </div>
       )}
 
-      {/* Print Mode View (Off-screen but rendered for Capture) */}
-      {/* We keep it 1920x1080 fixed to ensure the layout matches desktop design perfectly */}
+      {/* Print Mode View */}
       {isGeneratingPdf && (
         <div id="print-container" className="fixed top-0 left-0 z-[-1] pointer-events-none opacity-100 bg-[#0a0118]" style={{ width: '1920px' }}>
           {slides.map((SlideComponent, index) => (
             <div key={index} className="w-[1920px] h-[1080px] overflow-hidden relative flex flex-col items-center justify-center bg-[#0a0118] border-b border-gray-800">
-               {/* Ensure full scale rendering */}
                <div className="w-full h-full flex items-center justify-center transform scale-100">
                   <SlideComponent />
                </div>

@@ -100,6 +100,7 @@
         
         body, html {
           background-color: #0a0118 !important;
+          color: white !important;
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
           margin: 0;
@@ -107,16 +108,22 @@
           width: 100%;
         }
 
-        /* Fix invisible gradients in print */
-        .text-transparent {
-           -webkit-text-fill-color: initial !important;
-           color: #d8b4fe !important; /* Fallback to a visible light purple */
+        /* Corrigir textos gradientes que ficam invisíveis na impressão */
+        /* Força uma cor sólida (Lilás Claro) para garantir leitura no fundo escuro */
+        .text-transparent, 
+        [class*="text-transparent"], 
+        .bg-clip-text {
+           -webkit-text-fill-color: #d8b4fe !important;
+           color: #d8b4fe !important;
            background: none !important;
+           background-clip: border-box !important;
+           -webkit-background-clip: border-box !important;
            text-shadow: none !important;
+           filter: none !important;
         }
 
-        /* Ensure specifically gradients on titles fallback nicely */
-        h1, h2, h3, span {
+        /* Garantir que títulos normais sejam brancos */
+        h1, h2, h3, h4, h5, h6 {
             text-shadow: none !important;
         }
 

@@ -1,14 +1,7 @@
 
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { GlassCard } from '../../ui/GlassCard';
-import { Smartphone, Monitor, Tablet, Wifi, Globe, MousePointer2 } from 'lucide-react';
-
-const data = [
-  { name: '2015', mobile: 35, desktop: 65 },
-  { name: '2019', mobile: 52, desktop: 48 },
-  { name: '2024', mobile: 68, desktop: 32 },
-];
+import { Smartphone, Monitor, Globe, Menu, LayoutGrid } from 'lucide-react';
 
 const Slide8: React.FC = () => {
   return (
@@ -23,149 +16,146 @@ const Slide8: React.FC = () => {
         </div>
 
         {/* Header */}
-        <div className="text-center mb-8 lg:mb-12 z-10 flex-shrink-0 animate-fade-in-up">
+        <div className="text-center mb-8 lg:mb-10 z-10 flex-shrink-0 animate-fade-in-up">
            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-300 text-sm font-medium mb-4 backdrop-blur-sm">
                 <Globe className="w-4 h-4" />
                 <span>Tendências Globais</span>
             </div>
            <h2 className="text-4xl lg:text-6xl font-bold drop-shadow-neon-white mb-3">
-              A Revolução <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">Mobile-First</span>
+              Responsividade: <br className="hidden md:block"/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">A Revolução Mobile-First</span>
            </h2>
            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Antigamente, criava-se para computador e adaptava-se para celular. <br/>
-              Hoje, <strong>o celular vem primeiro</strong>.
+              Um único código, múltiplas experiências. O layout deve fluir como água para se adaptar a qualquer tela.
            </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full max-w-7xl mx-auto h-[55%]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full max-w-7xl mx-auto h-[60%]">
             
-            {/* Left: Device Metrics & Concept */}
-            <div className="space-y-6 h-full flex flex-col justify-center animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            {/* Left: Explanations */}
+            <div className="space-y-6 h-full flex flex-col justify-center animate-fade-in-up order-2 lg:order-1" style={{animationDelay: '0.2s'}}>
                 
-                {/* Device Cards */}
-                <div className="grid gap-4">
-                    <div className="bg-white/5 p-4 rounded-2xl border border-white/10 flex items-center gap-4 group hover:bg-purple-500/10 hover:border-purple-500/30 transition-all cursor-default hover:scale-[1.02]">
-                        <div className="p-3 rounded-xl bg-purple-500/20 text-purple-300 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                            <Smartphone className="w-8 h-8" />
-                        </div>
-                        <div className="flex-1">
-                            <div className="flex justify-between items-center mb-1">
-                                <h4 className="font-bold text-white text-lg">Smartphone</h4>
-                                <span className="text-xs font-mono text-green-400 bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">DOMINANTE</span>
-                            </div>
-                            <p className="text-sm text-gray-400">Telas pequenas, toque (touch), internet móvel. O design deve ser simples e vertical.</p>
-                        </div>
+                <div className="bg-white/5 p-5 rounded-2xl border border-white/10 flex items-start gap-4 hover:bg-white/10 transition-colors">
+                    <div className="p-3 rounded-xl bg-blue-500/20 text-blue-300">
+                        <Monitor className="w-6 h-6" />
                     </div>
-
-                    <div className="bg-white/5 p-4 rounded-2xl border border-white/10 flex items-center gap-4 group hover:bg-blue-500/10 hover:border-blue-500/30 transition-all cursor-default hover:scale-[1.02] opacity-60 hover:opacity-100">
-                        <div className="p-3 rounded-xl bg-blue-500/20 text-blue-300 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                            <Monitor className="w-8 h-8" />
-                        </div>
-                        <div className="flex-1">
-                            <div className="flex justify-between items-center mb-1">
-                                <h4 className="font-bold text-white text-lg">Desktop</h4>
-                                <span className="text-xs font-mono text-gray-500 bg-gray-500/10 px-2 py-0.5 rounded border border-gray-500/20">SECUNDÁRIO</span>
-                            </div>
-                            <p className="text-sm text-gray-400">Telas grandes, mouse e teclado. O design expande para mostrar mais detalhes.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-fuchsia-900/40 to-purple-900/40 border border-fuchsia-500/20 backdrop-blur-md">
-                    <div className="flex items-start gap-3">
-                        <Wifi className="w-5 h-5 text-fuchsia-400 mt-1" />
-                        <p className="text-sm text-gray-200">
-                            <strong>Dica de Ouro:</strong> O Google prioriza sites otimizados para celular. Se o seu site não for responsivo, ele desaparece das buscas.
+                    <div>
+                        <h4 className="font-bold text-white text-lg mb-1">Desktop (Horizontal)</h4>
+                        <p className="text-sm text-gray-400">
+                            Espaço de sobra. O conteúdo se expande em colunas, menus ficam visíveis e usamos grids complexos.
                         </p>
                     </div>
                 </div>
+
+                <div className="bg-white/5 p-5 rounded-2xl border border-white/10 flex items-start gap-4 hover:bg-fuchsia-500/10 transition-colors border-fuchsia-500/20">
+                    <div className="p-3 rounded-xl bg-fuchsia-500/20 text-fuchsia-300">
+                        <Smartphone className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h4 className="font-bold text-white text-lg mb-1">Mobile (Vertical)</h4>
+                        <p className="text-sm text-gray-400">
+                            Espaço limitado. O conteúdo empilha (Stack), menus viram "hambúrguer" e a leitura é vertical.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/20 text-green-300 text-sm font-mono text-center">
+                    @media (max-width: 768px) {'{ flex-direction: column; }'}
+                </div>
             </div>
 
-            {/* Right: The Holographic Chart */}
-            <div className="h-full relative animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-                 {/* Tablet Frame Effect */}
-                 <div className="absolute inset-0 bg-[#0f041e]/80 rounded-[2rem] border-4 border-[#2a2a2a] shadow-2xl flex flex-col overflow-hidden group">
+            {/* Right: Device Simulation */}
+            <div className="h-full relative flex items-center justify-center animate-fade-in-up order-1 lg:order-2 perspective-1000" style={{animationDelay: '0.4s'}}>
+                 
+                 {/* Laptop Frame */}
+                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[60%] w-[450px] lg:w-[550px] aspect-[16/10] bg-[#1a1a1a] rounded-xl border-[4px] border-[#2d2d2d] shadow-2xl z-10">
+                    {/* Laptop Camera */}
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#333] border border-[#444]"></div>
                     
-                    {/* Camera / Top Bar */}
-                    <div className="h-8 bg-black flex items-center justify-center">
-                        <div className="w-16 h-4 bg-[#1a1a1a] rounded-b-xl flex justify-center items-center gap-2">
-                            <div className="w-1 h-1 rounded-full bg-[#333]"></div>
-                            <div className="w-2 h-2 rounded-full bg-[#112244] border border-[#333]"></div>
+                    {/* Laptop Screen Content (Desktop Layout) */}
+                    <div className="absolute inset-0 m-4 mt-6 bg-white rounded flex flex-col overflow-hidden">
+                        {/* Mock Navbar */}
+                        <div className="h-8 bg-purple-600 flex items-center justify-between px-4">
+                            <div className="w-20 h-3 bg-white/30 rounded"></div>
+                            <div className="flex gap-2">
+                                <div className="w-10 h-2 bg-white/30 rounded"></div>
+                                <div className="w-10 h-2 bg-white/30 rounded"></div>
+                                <div className="w-10 h-2 bg-white/30 rounded"></div>
+                            </div>
                         </div>
-                    </div>
-
-                    {/* Screen Content */}
-                    <div className="flex-1 relative p-6 bg-gradient-to-b from-[#1a0b2e] to-black">
-                        {/* Glare reflection */}
-                        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-bl from-white/5 to-transparent pointer-events-none rounded-bl-full"></div>
-
-                        <div className="flex items-center justify-between mb-8 relative z-10">
-                            <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                                <Tablet className="w-5 h-5 text-purple-400" />
-                                Analytics
-                            </h3>
-                            <div className="flex gap-4">
-                                <div className="flex items-center gap-2 text-xs font-mono">
-                                    <span className="w-2 h-2 rounded-full bg-fuchsia-500 shadow-[0_0_8px_#d946ef]"></span> Mobile
+                        {/* Mock Hero */}
+                        <div className="h-32 bg-gray-100 flex items-center px-8 gap-8">
+                            <div className="flex-1 space-y-2">
+                                <div className="w-3/4 h-4 bg-gray-300 rounded"></div>
+                                <div className="w-1/2 h-3 bg-gray-200 rounded"></div>
+                                <div className="w-24 h-6 bg-purple-500 rounded mt-2"></div>
+                            </div>
+                            <div className="w-32 h-20 bg-purple-200 rounded"></div>
+                        </div>
+                        {/* Mock Grid (3 Columns) */}
+                        <div className="flex-1 bg-white p-4">
+                            <div className="grid grid-cols-3 gap-4 h-full">
+                                <div className="bg-blue-50 rounded border border-blue-100 p-2 space-y-2">
+                                    <div className="w-8 h-8 rounded bg-blue-200"></div>
+                                    <div className="w-full h-2 bg-gray-200 rounded"></div>
                                 </div>
-                                <div className="flex items-center gap-2 text-xs font-mono">
-                                    <span className="w-2 h-2 rounded-full bg-blue-500 opacity-50"></span> Desktop
+                                <div className="bg-pink-50 rounded border border-pink-100 p-2 space-y-2">
+                                    <div className="w-8 h-8 rounded bg-pink-200"></div>
+                                    <div className="w-full h-2 bg-gray-200 rounded"></div>
+                                </div>
+                                <div className="bg-orange-50 rounded border border-orange-100 p-2 space-y-2">
+                                    <div className="w-8 h-8 rounded bg-orange-200"></div>
+                                    <div className="w-full h-2 bg-gray-200 rounded"></div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        {/* Chart Container - Added min-w to prevent 0 width issues during print render */}
-                        <div className="h-[280px] w-full relative z-10 min-w-[300px]">
-                            <ResponsiveContainer width="99%" height="100%" minWidth={300} minHeight={200}>
-                                <BarChart data={data} barGap={8}>
-                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                                    <XAxis 
-                                        dataKey="name" 
-                                        axisLine={false} 
-                                        tickLine={false} 
-                                        tick={{ fill: '#9ca3af', fontSize: 12, fontFamily: 'monospace' }} 
-                                        dy={10}
-                                    />
-                                    <YAxis hide />
-                                    <Tooltip 
-                                        cursor={{fill: 'rgba(255,255,255,0.05)'}}
-                                        contentStyle={{ 
-                                            backgroundColor: 'rgba(0,0,0,0.9)', 
-                                            borderColor: '#a855f7', 
-                                            borderRadius: '8px',
-                                            boxShadow: '0 0 20px rgba(168,85,247,0.2)',
-                                            color: 'white'
-                                        }}
-                                        labelStyle={{ color: '#d8b4fe', fontWeight: 'bold' }}
-                                    />
-                                    <Bar dataKey="mobile" name="Mobile" radius={[4, 4, 0, 0]} animationDuration={0}>
-                                        {data.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill="url(#colorMobile)" strokeWidth={0} />
-                                        ))}
-                                    </Bar>
-                                    <Bar dataKey="desktop" name="Desktop" radius={[4, 4, 0, 0]} animationDuration={0}>
-                                         {data.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill="url(#colorDesktop)" strokeWidth={0} />
-                                        ))}
-                                    </Bar>
-                                    <defs>
-                                        <linearGradient id="colorMobile" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#d946ef" stopOpacity={1}/>
-                                            <stop offset="100%" stopColor="#86198f" stopOpacity={0.8}/>
-                                        </linearGradient>
-                                        <linearGradient id="colorDesktop" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.5}/>
-                                            <stop offset="100%" stopColor="#1e3a8a" stopOpacity={0.2}/>
-                                        </linearGradient>
-                                    </defs>
-                                </BarChart>
-                            </ResponsiveContainer>
+                    {/* Laptop Base */}
+                    <div className="absolute -bottom-8 -left-10 -right-10 h-8 bg-[#2d2d2d] rounded-b-xl flex justify-center">
+                        <div className="w-32 h-3 bg-[#1a1a1a] rounded-b-lg mt-0"></div>
+                    </div>
+                 </div>
+
+                 {/* Phone Frame */}
+                 <div className="absolute bottom-10 right-[18%] w-[100px] lg:w-[120px] aspect-[9/19] bg-[#000] rounded-[2rem] border-[4px] border-[#333] shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 transform translate-y-4">
+                    {/* Phone Notch */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-black rounded-b-xl z-30"></div>
+                    
+                    {/* Phone Screen Content (Mobile Layout) */}
+                    <div className="absolute inset-1 bg-white rounded-[1.8rem] overflow-hidden flex flex-col">
+                        {/* Mock Navbar (Burger Menu) */}
+                        <div className="h-10 bg-purple-600 flex items-center justify-between px-3 pt-2">
+                            <div className="w-12 h-2 bg-white/30 rounded"></div>
+                            <Menu className="w-4 h-4 text-white" />
+                        </div>
+
+                        {/* Mock Hero (Stacked) */}
+                        <div className="bg-gray-100 p-3 flex flex-col items-center text-center gap-2 pb-4">
+                            <div className="w-16 h-16 bg-purple-200 rounded-full"></div>
+                            <div className="w-full h-3 bg-gray-300 rounded"></div>
+                            <div className="w-2/3 h-2 bg-gray-200 rounded"></div>
+                            <div className="w-20 h-5 bg-purple-500 rounded mt-1"></div>
+                        </div>
+
+                        {/* Mock Grid (1 Column / Stacked) */}
+                        <div className="flex-1 bg-white p-3 space-y-2 overflow-hidden">
+                            <div className="bg-blue-50 rounded p-2 flex items-center gap-2">
+                                <div className="w-6 h-6 rounded bg-blue-200 shrink-0"></div>
+                                <div className="w-full h-1.5 bg-gray-200 rounded"></div>
+                            </div>
+                            <div className="bg-pink-50 rounded p-2 flex items-center gap-2">
+                                <div className="w-6 h-6 rounded bg-pink-200 shrink-0"></div>
+                                <div className="w-full h-1.5 bg-gray-200 rounded"></div>
+                            </div>
+                            <div className="bg-orange-50 rounded p-2 flex items-center gap-2">
+                                <div className="w-6 h-6 rounded bg-orange-200 shrink-0"></div>
+                                <div className="w-full h-1.5 bg-gray-200 rounded"></div>
+                            </div>
                         </div>
                     </div>
                  </div>
 
-                 {/* Floating Mouse Cursor for effect */}
-                 <MousePointer2 className="absolute bottom-10 right-10 text-white drop-shadow-[0_0_10px_black] w-8 h-8 animate-bounce opacity-80" />
             </div>
 
         </div>

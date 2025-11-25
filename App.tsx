@@ -137,10 +137,31 @@ const App: React.FC = () => {
     })
   };
 
+  // Reordered Slides:
+  // 1. Intro
+  // 2. How it works
+  // 3. Front vs Back (Moved from 11)
+  // 4. Ways to Build (Swapped with 3)
+  // 5. Core Tech (Swapped with 4)
+  // 6. IDE
+  // 7. Tags (Swapped with 6)
+  // 8. Anatomy (Swapped with 7)
+  // ... rest same
   const slides = [
-    Slide1, Slide2, Slide3, Slide4, Slide5,
-    Slide6, Slide7, Slide8, Slide9, Slide10,
-    Slide11, Slide12, Slide13, Slide14
+    Slide1,
+    Slide2,
+    Slide11, // Front vs Back
+    Slide4,  // Forms of Building (CMS vs Code)
+    Slide3,  // Core Tech (HTML/CSS/JS)
+    Slide5,  // IDE
+    Slide7,  // Tags (Real Code)
+    Slide6,  // Anatomy (Blueprint)
+    Slide8,
+    Slide9,
+    Slide10,
+    Slide12,
+    Slide13,
+    Slide14
   ];
 
   const MainContent = (

@@ -94,7 +94,7 @@
       /* Print Styles */
       @media print {
         @page {
-           size: landscape; /* Suggest landscape orientation */
+           size: landscape;
            margin: 0;
         }
         
@@ -108,8 +108,37 @@
           width: 100%;
         }
 
+        /* 
+           CRÍTICO: Desabilitar animações. 
+           Animações como 'fade-in-up' começam com opacity: 0. Se o print ocorrer antes do fim, 
+           ou se o motor de print ignorar o estado final, o texto fica invisível.
+           Forçamos opacity: 1 e resetamos transforms.
+        */
+        *, *::before, *::after {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .animate-fade-in-up, 
+        .animate-fade-in, 
+        .animate-float,
+        .animate-pulse,
+        [class*="animate-"] {
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+        }
+
+        /* Resetar filtros de blur que podem causar problemas na rasterização */
+        .backdrop-blur-xl, .backdrop-blur-md, .backdrop-blur-sm {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            /* Fallback visual para vidro */
+            background-color: rgba(25, 10, 40, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
         /* Corrigir textos gradientes que ficam invisíveis na impressão */
-        /* Força uma cor sólida (Lilás Claro) para garantir leitura no fundo escuro */
         .text-transparent, 
         [class*="text-transparent"], 
         .bg-clip-text {
@@ -122,9 +151,18 @@
            filter: none !important;
         }
 
-        /* Garantir que títulos normais sejam brancos */
+        /* Garantir visibilidade dos Headers */
         h1, h2, h3, h4, h5, h6 {
+            color: #ffffff !important;
             text-shadow: none !important;
+            opacity: 1 !important;
+        }
+
+        /* Tratamento específico para spans dentro de headers (onde costumam estar os gradientes) */
+        h1 span, h2 span, h3 span {
+             color: #d8b4fe !important;
+             -webkit-text-fill-color: #d8b4fe !important;
+             opacity: 1 !important;
         }
 
         /* Hide interactive elements and noise */
@@ -154,11 +192,10 @@
 
         /* Scale content to fit the page without breaking layout */
         .print-slide > div {
-             transform: scale(0.6) !important; /* Scale down slightly to ensure it fits A4 margins if needed */
+             transform: scale(0.65) !important; 
              transform-origin: center center !important;
-             width: 1920px !important; /* Force internal width */
-             height: 1080px !important; /* Force internal height */
-             display: flex; /* Ensure flex behavior is kept */
+             width: 1920px !important;
+             height: 1080px !important;
         }
       }
     </style>

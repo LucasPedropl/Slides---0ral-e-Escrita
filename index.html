@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -84,28 +85,49 @@
       /* Print Styles */
       @media print {
         @page {
-           size: landscape;
+           /* Define a custom size for the PDF pages */
+           size: 1920px 1080px;
            margin: 0;
         }
-        body {
+        
+        body, html {
           background-color: #0a0118 !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
-          overflow: visible !important;
+          width: 1920px;
+          height: 1080px;
+          margin: 0;
+          padding: 0;
         }
-        .bg-noise {
+
+        .bg-noise, #root > div.print\:hidden {
             display: none !important;
         }
-        .page-break {
-          page-break-after: always;
-          break-after: page;
-          height: 100vh;
-          width: 100vw;
-          overflow: hidden;
+
+        /* Show the print container */
+        #print-container {
+            display: block !important;
+            background-color: #0a0118 !important;
         }
-        /* Ensure charts print correctly */
-        svg {
-            break-inside: avoid;
+
+        .print-slide {
+          break-after: always;
+          page-break-after: always;
+          width: 1920px !important;
+          height: 1080px !important;
+          overflow: hidden;
+          background-color: #0a0118 !important;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Ensure texts are visible on white paper if user prints physically, 
+           though PDF export usually respects colors with print-color-adjust */
+        * {
+            -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
+            print-color-adjust: exact !important;          /* Firefox */
         }
       }
     </style>

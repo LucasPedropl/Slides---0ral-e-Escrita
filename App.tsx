@@ -22,16 +22,12 @@ import SlideJS from './components/slides/SlideJS';
 import SlideResult from './components/slides/SlideResult';
 import SlideCodeOverview from './components/slides/SlideCodeOverview';
 import { AnimatePresence, motion } from 'framer-motion';
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
-import { Loader2 } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = 18; 
   const [direction, setDirection] = useState(0);
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
-  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isPrinting, setIsPrinting] = useState(false);
   
   // New State for Report View
   const [showReport, setShowReport] = useState(false);
@@ -39,12 +35,9 @@ const App: React.FC = () => {
   const nextSlide = useCallback(() => {
     setDirection(1);
     setCurrentSlide((prev) => {
-      // Check if document is in fullscreen mode
       if (document.fullscreenElement) {
-        // If in fullscreen, prevent looping from last slide to first
         return prev === totalSlides - 1 ? prev : prev + 1;
       }
-      // Normal behavior: loop back to start
       return (prev + 1) % totalSlides;
     });
   }, [totalSlides]);
@@ -52,12 +45,9 @@ const App: React.FC = () => {
   const prevSlide = useCallback(() => {
     setDirection(-1);
     setCurrentSlide((prev) => {
-      // Check if document is in fullscreen mode
       if (document.fullscreenElement) {
-        // If in fullscreen, prevent looping from first slide to last
         return prev === 0 ? prev : prev - 1;
       }
-      // Normal behavior: loop back to end
       return (prev - 1 + totalSlides) % totalSlides;
     });
   }, [totalSlides]);
@@ -69,64 +59,28 @@ const App: React.FC = () => {
     }
   };
 
-  const handlePrint = useCallback(async () => {
-    setIsGeneratingPdf(true);
-    setLoadingProgress(0);
+  // Improved Native Print Handler
+  const handlePrint = useCallback(() => {
+    // 1. Activate Print Mode (renders all slides in the DOM)
+    setIsPrinting(true);
 
-    setTimeout(async () => {
-        const printContainer = document.getElementById('print-container');
-        if (!printContainer) {
-            setIsGeneratingPdf(false);
-            return;
-        }
+    // 2. Wait for React to render the DOM, then trigger browser print
+    setTimeout(() => {
+      window.print();
+    }, 500);
+  }, []);
 
-        try {
-            const pdf = new jsPDF({
-                orientation: 'landscape',
-                unit: 'px',
-                format: [1920, 1080]
-            });
+  // Listener to turn off print mode after print dialog closes
+  useEffect(() => {
+    const handleAfterPrint = () => {
+      setIsPrinting(false);
+    };
 
-            const slides = Array.from(printContainer.children) as HTMLElement[];
-
-            for (let i = 0; i < slides.length; i++) {
-                const slide = slides[i];
-                setLoadingProgress(Math.round(((i) / slides.length) * 100));
-
-                const canvas = await html2canvas(slide, {
-                    scale: 1,
-                    useCORS: true,
-                    logging: false,
-                    backgroundColor: '#0a0118',
-                    width: 1920,
-                    height: 1080,
-                    windowWidth: 1920,
-                    windowHeight: 1080
-                });
-
-                const imgData = canvas.toDataURL('image/png');
-
-                if (i > 0) {
-                    pdf.addPage([1920, 1080], 'landscape');
-                }
-
-                pdf.addImage(imgData, 'PNG', 0, 0, 1920, 1080);
-            }
-
-            setLoadingProgress(100);
-            pdf.save('webseminar-presentation.pdf');
-        } catch (error) {
-            console.error("PDF Generation failed:", error);
-            alert("Ocorreu um erro ao gerar o PDF. Tente novamente.");
-        } finally {
-            setIsGeneratingPdf(false);
-            setLoadingProgress(0);
-        }
-    }, 1000); 
+    window.addEventListener("afterprint", handleAfterPrint);
+    return () => window.removeEventListener("afterprint", handleAfterPrint);
   }, []);
 
   useEffect(() => {
-    // Disable slide navigation keys when in Report View
     if (showReport) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -184,7 +138,6 @@ const App: React.FC = () => {
     Slide14
   ];
 
-  // If Report View is active, render it directly (bypassing ScaleWrapper and Layout)
   if (showReport) {
     return <ReportView onBack={() => setShowReport(false)} />;
   }
@@ -224,33 +177,23 @@ const App: React.FC = () => {
 
   return (
     <>
-      {/* Normal View (Scaled) */}
-      <ScaleWrapper>
-        {MainContent}
-      </ScaleWrapper>
+      {/* Normal View (Scaled) - Hidden when printing via CSS */}
+      <div className="print:hidden">
+        <ScaleWrapper>
+          {MainContent}
+        </ScaleWrapper>
+      </div>
 
-      {/* PDF Generation Loading Overlay */}
-      {isGeneratingPdf && (
-          <div className="fixed inset-0 z-[9999] bg-black/90 flex flex-col items-center justify-center text-white backdrop-blur-sm">
-             <div className="flex flex-col items-center gap-4 p-8 rounded-2xl bg-[#1a0b2e] border border-purple-500/30 shadow-[0_0_50px_rgba(168,85,247,0.2)]">
-                <Loader2 className="w-12 h-12 text-purple-500 animate-spin" />
-                <h2 className="text-xl font-bold">Gerando PDF...</h2>
-                <div className="w-64 h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div 
-                        className="h-full bg-gradient-to-r from-purple-500 to-fuchsia-500 transition-all duration-300"
-                        style={{ width: `${loadingProgress}%` }}
-                    />
-                </div>
-                <p className="text-sm text-gray-400">Capturando slide {Math.ceil((loadingProgress / 100) * totalSlides)} de {totalSlides}</p>
-             </div>
-          </div>
-      )}
-
-      {/* Print Mode View */}
-      {isGeneratingPdf && (
-        <div id="print-container" className="fixed top-0 left-0 z-[-1] pointer-events-none opacity-100 bg-[#0a0118]" style={{ width: '1920px' }}>
+      {/* Print Mode View - Only Visible in Print/PDF Export */}
+      {isPrinting && (
+        <div id="print-container" className="hidden print:block absolute top-0 left-0 bg-[#0a0118]">
           {slides.map((SlideComponent, index) => (
-            <div key={index} className="w-[1920px] h-[1080px] overflow-hidden relative flex flex-col items-center justify-center bg-[#0a0118] border-b border-gray-800">
+            <div 
+              key={index} 
+              className="print-slide w-[1920px] h-[1080px] overflow-hidden relative flex flex-col items-center justify-center bg-[#0a0118]"
+              style={{ pageBreakAfter: 'always' }}
+            >
+               {/* Force 100% scale for PDF output */}
                <div className="w-full h-full flex items-center justify-center transform scale-100">
                   <SlideComponent />
                </div>

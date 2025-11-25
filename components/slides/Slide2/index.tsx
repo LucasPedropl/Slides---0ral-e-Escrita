@@ -5,27 +5,28 @@ import { Globe, Server, FileCode } from 'lucide-react';
 
 const Slide2: React.FC = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-between h-full gap-12 px-4 lg:px-12 w-full">
+    <div className="flex flex-col lg:flex-row items-center justify-between h-full gap-12 px-4 lg:px-12 w-full relative overflow-visible">
         
-        {/* Left: Visual Representation */}
-        <div className="relative w-full lg:w-1/2 h-[50vh] lg:h-[70vh] flex items-center justify-center order-2 lg:order-1">
-            
-            {/* Background Glow - Freed from box constraint */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-purple-600/20 blur-[100px] rounded-full pointer-events-none"></div>
+        {/* Background Glow - Freed from box constraint */}
+        {/* Placed at root to ensure it isn't clipped by smaller containers and covers a large area naturally */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vh] h-[120vh] bg-purple-600/20 blur-[100px] rounded-full pointer-events-none -z-10"></div>
 
+        {/* Left: Visual Representation */}
+        <div className="relative w-full lg:w-1/2 h-[50vh] lg:h-[70vh] flex items-center justify-center order-2 lg:order-1 z-10">
+            
             {/* Central Visual Stack */}
-            <div className="relative z-10 w-full max-w-md">
+            <div className="relative w-full max-w-2xl aspect-square lg:aspect-[4/3] flex items-center justify-center">
                 
                 {/* Floating Icons representing the flow */}
-                <div className="absolute top-0 right-10 animate-float z-30">
-                     <div className="bg-[#1a0b2e] p-4 rounded-2xl border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.3)] backdrop-blur-xl">
-                        <Globe className="w-10 h-10 text-blue-400" />
+                <div className="absolute top-[-5%] left-[5%] animate-float z-40">
+                     <div className="bg-[#1a0b2e] p-3 lg:p-4 rounded-2xl border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.3)] backdrop-blur-xl">
+                        <Globe className="w-8 h-8 lg:w-10 lg:h-10 text-blue-400" />
                      </div>
                 </div>
 
-                <div className="absolute bottom-20 left-0 animate-float animation-delay-2000 z-30">
-                     <div className="bg-[#1a0b2e] p-4 rounded-2xl border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.3)] backdrop-blur-xl">
-                        <Server className="w-10 h-10 text-purple-400" />
+                <div className="absolute bottom-[5%] right-[5%] animate-float animation-delay-2000 z-40">
+                     <div className="bg-[#1a0b2e] p-3 lg:p-4 rounded-2xl border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.3)] backdrop-blur-xl">
+                        <Server className="w-8 h-8 lg:w-10 lg:h-10 text-purple-400" />
                      </div>
                 </div>
 
@@ -35,43 +36,42 @@ const Slide2: React.FC = () => {
                     <div className="w-[500px] h-[500px] border border-white/5 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animation-delay-1000"></div>
                  </div>
 
-                {/* Photo Stack Effect */}
-                <div className="relative w-full aspect-[4/3] group cursor-pointer">
+                {/* Photo Stack Effect - Spread Layout */}
+                <div className="relative w-full h-full group perspective-1000">
                     
-                    {/* Bottom Card (Rotated Left) */}
-                    <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden border-[1px] border-white/10 shadow-xl bg-[#0a0118] transform -rotate-6 scale-90 opacity-60 transition-transform duration-700 group-hover:-rotate-12 group-hover:-translate-x-4">
+                    {/* Card 1: Top Left (Cybersecurity) */}
+                    <div className="absolute top-0 left-0 w-[55%] aspect-video rounded-2xl overflow-hidden border-[1px] border-white/10 shadow-2xl bg-[#0a0118] transform -rotate-12 hover:-rotate-6 transition-all duration-500 hover:scale-110 z-20 hover:z-50 origin-bottom-right">
                         <img 
                              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop"
                              alt="Cybersecurity"
-                             className="w-full h-full object-cover opacity-50 grayscale"
+                             className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
                         />
+                        <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors"></div>
                     </div>
 
-                    {/* Middle Card (Rotated Right) */}
-                    <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden border-[1px] border-white/10 shadow-xl bg-[#0a0118] transform rotate-6 scale-95 opacity-80 transition-transform duration-700 group-hover:rotate-12 group-hover:translate-x-4">
+                    {/* Card 2: Top Right (Servers) */}
+                    <div className="absolute top-8 right-0 w-[55%] aspect-video rounded-2xl overflow-hidden border-[1px] border-white/10 shadow-2xl bg-[#0a0118] transform rotate-12 hover:rotate-6 transition-all duration-500 hover:scale-110 z-10 hover:z-50 origin-bottom-left">
                          <img 
-                             src="https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=800&auto=format&fit=crop"
+                             src="https://blog.consistem.com.br/wp-content/uploads/2022/03/05_04-7-dicas-de-como-melhorar-a-performance-do-servidor-da-sua-empresa-2.jpg"
                              alt="Servers"
-                             className="w-full h-full object-cover opacity-60 grayscale"
+                             className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
                         />
+                         <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors"></div>
                     </div>
 
-                    {/* Main Top Card */}
-                    <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden border-[1px] border-white/20 shadow-2xl bg-[#0a0118] transform rotate-0 transition-all duration-700 group-hover:scale-105 z-20">
+                    {/* Card 3: Bottom Center (Main WWW) */}
+                    <div className="absolute bottom-0 left-1/2 w-[60%] aspect-video rounded-2xl overflow-hidden border-[1px] border-white/20 shadow-[0_0_50px_rgba(168,85,247,0.3)] bg-[#0a0118] transform -translate-x-1/2 hover:scale-110 transition-all duration-500 z-30 hover:z-50">
                         <img 
                             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop" 
                             alt="Global Network" 
-                            className="w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-110"
+                            className="w-full h-full object-cover opacity-100"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0118] via-transparent to-transparent"></div>
                         
                         {/* Floating Status Badge */}
-                        <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 shadow-lg">
-                            <div className="flex items-center gap-2 mb-1">
-                                <div className="h-2 w-2 rounded-full bg-green-500 animate-ping"></div>
-                                <span className="text-xs font-mono text-green-400">Status: Conectado</span>
-                            </div>
-                            <h3 className="text-xl font-bold text-white">World Wide Web</h3>
+                        <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 shadow-lg flex items-center gap-2">
+                            <div className="h-2 w-2 rounded-full bg-green-500 animate-ping"></div>
+                            <span className="text-xs font-mono text-green-400 uppercase font-bold">World Wide Web</span>
                         </div>
                     </div>
                 </div>

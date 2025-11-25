@@ -10,6 +10,15 @@
     <script>
       tailwind.config = {
         theme: {
+          // CRÍTICO: Força todas as telas a se comportarem como Desktop (0px breakpoint)
+          // Isso garante que no PDF (que tem largura de papel pequena) o site não quebre para Mobile (flex-col).
+          screens: {
+            'sm': '0px',
+            'md': '0px',
+            'lg': '0px',
+            'xl': '0px',
+            '2xl': '0px',
+          },
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
@@ -85,21 +94,33 @@
       /* Print Styles */
       @media print {
         @page {
-           /* Define a custom size for the PDF pages */
-           size: 1920px 1080px;
+           size: landscape; /* Suggest landscape orientation */
            margin: 0;
         }
         
         body, html {
           background-color: #0a0118 !important;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-          width: 1920px;
-          height: 1080px;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
           margin: 0;
           padding: 0;
+          width: 100%;
         }
 
+        /* Fix invisible gradients in print */
+        .text-transparent {
+           -webkit-text-fill-color: initial !important;
+           color: #d8b4fe !important; /* Fallback to a visible light purple */
+           background: none !important;
+           text-shadow: none !important;
+        }
+
+        /* Ensure specifically gradients on titles fallback nicely */
+        h1, h2, h3, span {
+            text-shadow: none !important;
+        }
+
+        /* Hide interactive elements and noise */
         .bg-noise, #root > div.print\:hidden {
             display: none !important;
         }
@@ -108,13 +129,14 @@
         #print-container {
             display: block !important;
             background-color: #0a0118 !important;
+            width: 100% !important;
         }
 
         .print-slide {
           break-after: always;
           page-break-after: always;
-          width: 1920px !important;
-          height: 1080px !important;
+          width: 100% !important;
+          height: 100vh !important;
           overflow: hidden;
           background-color: #0a0118 !important;
           position: relative;
@@ -123,11 +145,13 @@
           justify-content: center;
         }
 
-        /* Ensure texts are visible on white paper if user prints physically, 
-           though PDF export usually respects colors with print-color-adjust */
-        * {
-            -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
-            print-color-adjust: exact !important;          /* Firefox */
+        /* Scale content to fit the page without breaking layout */
+        .print-slide > div {
+             transform: scale(0.6) !important; /* Scale down slightly to ensure it fits A4 margins if needed */
+             transform-origin: center center !important;
+             width: 1920px !important; /* Force internal width */
+             height: 1080px !important; /* Force internal height */
+             display: flex; /* Ensure flex behavior is kept */
         }
       }
     </style>

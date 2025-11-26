@@ -24,8 +24,8 @@ const Slide8: React.FC = () => {
               Responsividade: <br className="hidden md:block"/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400">A Revolução Mobile-First</span>
            </h2>
-           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Um único código, múltiplas experiências. O layout deve fluir como água para se adaptar a qualquer tela.
+           <p className="text-gray-300 text-lg max-w-4xl mx-auto">
+              A tendência global atual exige responsividade, conhecida como a revolução "Mobile-First". O layout das aplicações web deve ser fluido para se adaptar a qualquer tela. Seja computador, celular, tablet ou televisão. Os computadores tem sites mais detalhados enquanto os celulares tem sites mais compactos
            </p>
         </div>
 

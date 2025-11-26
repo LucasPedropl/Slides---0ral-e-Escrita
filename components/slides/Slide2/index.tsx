@@ -86,7 +86,7 @@ const Slide2: React.FC = () => {
                     Como funciona <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">a Internet?</span>
                 </h2>
-                <p className="text-gray-400 text-lg">Para entender o invisível, vamos usar a <strong className="text-white border-b border-purple-500">Analogia da Casa</strong>.</p>
+                <p className="text-gray-400 text-lg">vamos relembrar o funcionamento da internet através da Analogia da Casa.</p>
             </div>
 
             <div className="space-y-4">

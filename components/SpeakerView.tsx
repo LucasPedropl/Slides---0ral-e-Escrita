@@ -24,7 +24,12 @@ As principais diferenças entre ambos, é que no metodo CMS, a facilidade e a ve
 
 Daqui em diante, o foco vai ser na criação de websites com o método de programação.`,
 
-  // Slide 4: Trinity
+  // Slide 4: IDE (Swapped: Was Slide 5)
+  `Agora você me pergunta, onde escrever o código do site? Embora seja possível escrever código em um bloco de notas simples, isso seria como tentar cavar uma piscina com uma colher.
+
+Desenvolvedores utilizam Ambientes de Desenvolvimento (IDEs) como o VS Code, que são como escavadeiras de alta precisão. Essas ferramentas oferecem recursos essenciais, como o "Syntax Highlight", que usa cores para diferenciar comandos, textos e variáveis instantaneamente, e o "Auto-Complete", que fecha tags automaticamente, resultando em menos digitação e menos erros.`,
+
+  // Slide 5: Trinity (Swapped: Was Slide 4)
   `Todo site moderno, incluindo os do método CMS explicado no slide anterior, são construídos sobre três pilares fundamentais, que podem ser explicados pela analogia do corpo humano.
 
 1. O primeiro pilar é o HTML, que atua como o esqueleto. Ele define a estrutura: onde fica o título, a imagem ou o botão. Sem o HTML, a página simplesmente não existe. É uma folha em branco.
@@ -33,84 +38,52 @@ Daqui em diante, o foco vai ser na criação de websites com o método de progra
 
 3. O terceiro pilar é o JavaScript, que age como o cérebro. Ele define o comportamento, o movimento, a interatividade, os cálculos e a lógica. É o JavaScript que dá vida e dinamismo ao corpo do site.`,
 
-  // Slide 5: IDE
-  `Agora você me pergunta, onde escrever o código do site? Embora seja possível escrever código em um bloco de notas simples, isso seria como tentar cavar uma piscina com uma colher.
-
-Desenvolvedores utilizam Ambientes de Desenvolvimento (IDEs) como o VS Code, que são como escavadeiras de alta precisão. Essas ferramentas oferecem recursos essenciais, como o "Syntax Highlight", que usa cores para diferenciar comandos, textos e variáveis instantaneamente, e o "Auto-Complete", que fecha tags automaticamente, resultando em menos digitação e menos erros.`,
-
-  // Slide 6: HTML
-  `Entrando no detalhe do nosso "esqueleto", o HTML vai muito além de apenas criar caixas na tela. Nós utilizamos o que chamamos de estrutura semântica.
-
-Isso significa dar nomes aos bois, ou melhor, aos cômodos da nossa casa digital. Em vez de usar elementos genéricos para tudo, usamos etiquetas específicas como "header" para o cabeçalho, "main" para o conteúdo principal e "footer" para o rodapé.
-
-Essa organização é fundamental porque ajuda o Google e os navegadores a entenderem a hierarquia do seu site, melhorando o ranqueamento nas buscas e a acessibilidade.`,
-
-  // Slide 7: CSS
-  `Com a estrutura definida, precisamos vestir o nosso site. É aqui que entra o CSS para estilizar os blocos. Nós pegamos aquele código HTML puro e transformamos em um layout visualmente rico.
-
-Definimos propriedades específicas: a cor de fundo (background-color) para dar o tom da marca, e as dimensões de largura e altura para organizar o espaço.
-
-É o CSS que transforma um documento de texto simples em uma interface agradável e profissional.`,
-
-  // Slide 8: JS
-  `Por fim, para dar inteligência ao sistema, usamos o JavaScript. Ele nos permite dar vida ao site.
-
-Imagine que precisamos que um elemento da tela pisque ou mude de status automaticamente a cada segundo. Com o JavaScript, criamos ciclos de repetição e condições lógicas (if/else).
-
-Por exemplo: podemos programar o site para verificar se o sistema está online; se estiver, ele mostra uma luz verde. Se cair, ele muda instantaneamente para vermelho. É essa camada que torna a página dinâmica e interativa.`,
-
-  // Slide 9: Code Overview
+  // Slide 6: Code Overview
   `Aqui vemos o código completo. HTML definindo as estruturas, CSS aplicando as cores e posicionamento, e JavaScript controlando a lógica.`,
 
-  // Slide 10: VS Code
+  // Slide 7: VS Code
   `Vamos ver isso na prática dentro do VS Code. (Demonstração da ferramenta e das abas de código).`,
 
-  // Slide 11: Anatomy (Slide 6 + Result Combined)
+  // Slide 8: Anatomy (Slide 6 + Result Combined)
   `Aqui temos o resultado final e a anatomia da página.
 
 Assim como o corpo humano tem cabeça, tronco e membros, um site segue uma estrutura lógica universal de Arquitetura da Informação. Temos o Header (cabeçalho) onde fica a logo e o menu, o Meio (composto por navegação, conteúdo principal e lateral) e o Footer (rodapé).
 
 No monitor, vemos o layout com Header (Roxo), Nav (Azul), Main (Verde) e Aside (Laranja). Note que o bloco "Main" fica piscando e mudando o texto de "MAIN" para "ONLINE", provando que o JavaScript está rodando em tempo real.`,
 
-  // Slide 12: Responsivity
+  // Slide 9: Responsivity
   `A tendência global atual exige responsividade, conhecida como a revolução "Mobile-First". O layout das aplicações web deve ser fluido para se adaptar a qualquer tela. Seja computador, celular, tablet ou televisão.
 
-No desktop, onde há espaço de sobra, o conteúdo se expande em colunas e menus visíveis. No ambiente mobile, onde o espaço é limitado, o conteúdo se empilha verticalmente e os menus se transformam em ícones compactos.
+Os computadores tem sites mais detalhados enquanto os celulares tem sites mais compactos.`,
 
-É importante ressaltar que QUASE toda essa responsividade é feita via CSS. O HTML, que é o esqueleto do site, não muda praticamente nada; em 99% dos casos, o CSS resolve o problema.`,
+  // Slide 10: Design
+  `O UI Design (User Interface) cuida da beleza visual — cores, tipografia e botões — para impressionar o usuário. Já o UX Design (User Experience) garante a facilidade de uso, assegurando que o usuário encontre o que precisa.`,
 
-  // Slide 13: Design
-  `Além de funcional e encontrável, o site precisa encantar.
-
-O UI Design (User Interface) cuida da beleza visual — cores, tipografia e botões — para impressionar o usuário. Já o UX Design (User Experience) garante a facilidade de uso, assegurando que o usuário encontre o que precisa, como o botão de "Comprar", em poucos segundos, sem confusão.
-
-Dentro da indústria, geralmente o Design (UI/UX) é feito por pessoas diferentes. O Designer constrói um protótipo e entrega para o desenvolvedor frontend criar os códigos. O Designer de UI/UX é o arquiteto, enquanto o Dev Frontend é o Engenheiro da obra.`,
-
-  // Slide 14: Internet (Analogia Casa)
-  `Para finalizar a parte técnica, vamos relembrar o funcionamento da internet através da Analogia da Casa.
+  // Slide 11: Internet (Analogia Casa)
+  `Vamos relembrar o funcionamento da internet através da Analogia da Casa.
 
 1. O Domínio (ex: google.com) é o endereço que você digita no GPS para encontrar a localização.
 2. A Hospedagem é o terreno, um computador ligado 24 horas (Servidor) onde a casa é construída.
 3. Os Arquivos (HTML, CSS, imagens) são a casa em si, a estrutura que o visitante vê.`,
 
-  // Slide 15: Domains
+  // Slide 12: Domains
   `Agora que entendemos a estrutura, precisamos definir o endereço da nossa casa. O domínio nada mais é do que o seu nome único na rede.
 
 Tecnicamente, os computadores se comunicam através de sequências numéricas chamadas de IP, mas como nós humanos preferimos nomes fáceis de lembrar, usamos domínios como "google.com".
 
 E onde conseguimos isso? Em registradores oficiais. Para sites nacionais com final .br, utilizamos o Registro.br. Para nomes internacionais (.com), usamos serviços como GoDaddy ou Google Domains. O custo é bastante acessível, girando em torno de 40 reais por ano.`,
 
-  // Slide 16: Deploy
+  // Slide 13: Deploy
   `Pra finalizar, com o domínio em mãos e o site construído, vamos para a etapa final: o Deploy.
 
 Enquanto o código está apenas no seu computador (o que chamamos de Localhost), ele é como um foguete na garagem: potente, mas ninguém pode ver.
 
 O processo de "Deploy" é exatamente o lançamento desse foguete para o espaço, ou seja, para a Nuvem, tornando seu site acessível globalmente para qualquer pessoa, em qualquer lugar do mundo.`,
 
-  // Slide 17: Resumo
+  // Slide 14: Resumo
   `Resumindo o que vimos hoje: Estrutura da Internet, Tecnologias (HTML/CSS/JS), Ferramentas de Design e como colocar tudo isso no ar.`,
 
-  // Slide 18: Fim
+  // Slide 15: Fim
   `Muito obrigado pela atenção de todos. Dúvidas?`
 ];
 

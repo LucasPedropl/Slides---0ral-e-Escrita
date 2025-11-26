@@ -13,8 +13,8 @@ const Slide9: React.FC = () => {
                 Design <span className="text-gray-600">&</span> <br/> 
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-pink-300">Experiência</span>
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-                Um site não basta funcionar. Ele precisa encantar (UI) e ser fácil de usar (UX).
+            <p className="text-gray-300 text-lg max-w-4xl mx-auto">
+                O UI Design (User Interface) cuida da beleza visual — cores, tipografia e botões — para impressionar o usuário. Já o UX Design (User Experience) garante a facilidade de uso, assegurando que o usuário encontre o que precisa
             </p>
         </div>
 

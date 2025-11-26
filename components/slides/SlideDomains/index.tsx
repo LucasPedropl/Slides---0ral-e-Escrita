@@ -18,7 +18,7 @@ const SlideDomains: React.FC = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">da Web (Domínio)</span>
            </h2>
            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Antes de lançar o foguete, você precisa de um endereço no GPS da internet.
+              Agora que entendemos a estrutura, precisamos definir o endereço da nossa casa. O domínio nada mais é do que o seu nome único na rede.
            </p>
         </div>
 

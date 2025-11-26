@@ -8,15 +8,12 @@ import Slide3 from './components/slides/Slide3';
 import Slide4 from './components/slides/Slide4';
 import Slide5 from './components/slides/Slide5';
 import Slide6 from './components/slides/Slide6';
-import Slide7 from './components/slides/Slide7';
 import Slide8 from './components/slides/Slide8';
 import Slide9 from './components/slides/Slide9';
 import Slide11 from './components/slides/Slide11';
 import Slide12 from './components/slides/Slide12';
 import Slide13 from './components/slides/Slide13';
 import Slide14 from './components/slides/Slide14';
-import SlideCSS from './components/slides/SlideCSS';
-import SlideJS from './components/slides/SlideJS';
 import SlideCodeOverview from './components/slides/SlideCodeOverview';
 import SlideVSCode from './components/slides/SlideVSCode';
 import SlideDomains from './components/slides/SlideDomains';
@@ -24,7 +21,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 18; 
+  const totalSlides = 15; 
   const [direction, setDirection] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
   const channelRef = useRef<BroadcastChannel | null>(null);
@@ -142,21 +139,18 @@ const App: React.FC = () => {
     Slide1,             // 0. Intro
     Slide11,            // 1. Front vs Back
     Slide4,             // 2. CMS vs Code
-    Slide3,             // 3. Trinity (HTML/CSS/JS)
-    Slide5,             // 4. IDE
-    Slide7,             // 5. HTML
-    SlideCSS,           // 6. CSS
-    SlideJS,            // 7. JS
-    SlideCodeOverview,  // 8. Overview
-    SlideVSCode,        // 9. Hands-on
-    Slide6,             // 10. Anatomy + Result Combined
-    Slide8,             // 11. Responsivity
-    Slide9,             // 12. Design 
-    Slide2,             // 13. How Internet Works
-    SlideDomains,       // 14. Domains
-    Slide12,            // 15. Deploy
-    Slide13,            // 16. Resumo
-    Slide14             // 17. Obrigado
+    Slide5,             // 3. IDE (Swapped with Slide3)
+    Slide3,             // 4. Trinity (HTML/CSS/JS) (Swapped with Slide5)
+    SlideCodeOverview,  // 5. Overview
+    SlideVSCode,        // 6. Hands-on
+    Slide6,             // 7. Anatomy + Result Combined
+    Slide8,             // 8. Responsivity
+    Slide9,             // 9. Design 
+    Slide2,             // 10. How Internet Works
+    SlideDomains,       // 11. Domains
+    Slide12,            // 12. Deploy
+    Slide13,            // 13. Resumo
+    Slide14             // 14. Obrigado
   ];
 
   const MainContent = (

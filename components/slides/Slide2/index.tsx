@@ -83,10 +83,10 @@ const Slide2: React.FC = () => {
         <div className="flex-1 w-full max-w-xl relative z-20 order-1 lg:order-2">
             <div className="mb-10 animate-fade-in-up">
                 <h2 className="text-4xl lg:text-6xl font-bold leading-tight drop-shadow-neon-white mb-4">
-                    Como colocar o site <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">no Ar?</span>
+                    Como colocar o<br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">site no Ar?</span>
                 </h2>
-                <p className="text-gray-400 text-lg">vamos relembrar o funcionamento da internet através da Analogia da Casa.</p>
+                <p className="text-gray-400 text-lg">Pra isso, precisamos de 3 elementos principais, vamos utilizar a Analogia da Casa para um entendimento mais simplificado.</p>
             </div>
 
             <div className="space-y-4">

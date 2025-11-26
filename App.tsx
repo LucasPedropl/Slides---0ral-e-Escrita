@@ -20,11 +20,12 @@ import SlideCSS from './components/slides/SlideCSS';
 import SlideJS from './components/slides/SlideJS';
 import SlideResult from './components/slides/SlideResult';
 import SlideCodeOverview from './components/slides/SlideCodeOverview';
+import SlideVSCode from './components/slides/SlideVSCode';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 18; 
+  const totalSlides = 19; 
   const [direction, setDirection] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
   
@@ -123,6 +124,7 @@ const App: React.FC = () => {
     SlideCSS,
     SlideJS,
     SlideCodeOverview,
+    SlideVSCode,
     SlideResult,
     Slide6,
     Slide8,

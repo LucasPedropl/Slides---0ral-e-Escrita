@@ -187,12 +187,18 @@ const App: React.FC = () => {
 
       {/* Print Mode View - Only Visible in Print/PDF Export */}
       {isPrinting && (
-        <div id="print-container" className="hidden print:block absolute top-0 left-0 bg-[#0a0118]">
+        <div id="print-container" className="hidden print:block absolute top-0 left-0">
           {slides.map((SlideComponent, index) => (
             <div 
               key={index} 
-              className="print-slide w-[1920px] h-[1080px] overflow-hidden relative flex flex-col items-center justify-center bg-[#0a0118]"
-              style={{ pageBreakAfter: 'always' }}
+              className="print-slide w-[1920px] h-[1080px] overflow-hidden relative flex flex-col items-center justify-center"
+              style={{ 
+                pageBreakAfter: 'always',
+                // Restore Purple Gradient for PDF
+                background: 'radial-gradient(circle at 50% 30%, #3b0764 0%, #0a0118 70%)',
+                WebkitPrintColorAdjust: 'exact',
+                printColorAdjust: 'exact'
+              }}
             >
                {/* Force 100% scale for PDF output */}
                <div className="w-full h-full flex items-center justify-center transform scale-100">

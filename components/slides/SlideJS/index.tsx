@@ -84,13 +84,9 @@ const SlideJS: React.FC = () => {
                             {/* Code */}
 <pre className="text-gray-300 leading-relaxed pl-4 whitespace-pre font-mono text-sm overflow-x-auto">
   <code>
-    <span className="text-gray-500 italic">// 1. Seleciona o bloco</span>
-    {"\n"}
     <span className="text-blue-400">let</span> <span className="text-blue-300">bloco</span> = <span className="text-green-300">document</span>.<span className="text-yellow-300">querySelector</span>(<span className="text-orange-300">'main'</span>);
     {"\n\n"}
 
-    <span className="text-gray-500 italic">// 2. Loop Infinito (a cada 2s)</span>
-    {"\n"}
     <span className="text-yellow-300">setInterval</span>(() <span className="text-blue-400">=&gt;</span> {"{"}
     {"\n\n"}
     {"  "}<span className="text-gray-500 italic">// Verifica o texto atual</span>
@@ -110,7 +106,7 @@ const SlideJS: React.FC = () => {
     {"    "}<span className="text-blue-300">bloco</span>.<span className="text-blue-300">style</span>.<span className="text-blue-300">background</span> = <span className="text-orange-300">"green"</span>;
     {"\n"}
     {"  "}<span className="text-purple-400">{"}"}</span>
-    {"\n"}
+
     {"}"}, <span className="text-green-300">2000</span>);
   </code>
 </pre>

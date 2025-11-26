@@ -30,6 +30,10 @@ const SlideCodeOverview: React.FC = () => {
 <code>
 <span className="text-blue-400 font-bold">&lt;!DOCTYPE html&gt;</span>{"\n"}
 <span className="text-blue-400 font-bold">&lt;html&gt;</span>{"\n"}
+{"  "}<span className="text-blue-400 font-bold">&lt;head&gt;</span>{"\n"}
+{"    "}<span className="text-blue-400 font-bold">&lt;title&gt;</span>Meu Site<span className="text-blue-400 font-bold">&lt;/title&gt;</span>{"\n"}
+{"    "}<span className="text-blue-400 font-bold">&lt;link</span> <span className="text-cyan-300">rel</span>=<span className="text-green-300">"stylesheet"</span> <span className="text-cyan-300">href</span>=<span className="text-green-300">"style.css"</span> <span className="text-blue-400 font-bold">/&gt;</span>{"\n"}
+{"  "}<span className="text-blue-400 font-bold">&lt;/head&gt;</span>{"\n"}
 {"  "}<span className="text-blue-400 font-bold">&lt;body&gt;</span>{"\n"}
 {"    "}<span className="text-blue-400 font-bold">&lt;div</span> <span className="text-cyan-300">class</span>=<span className="text-green-300">"container"</span><span className="text-blue-400 font-bold">&gt;</span>{"\n\n"}
 {"      "}<span className="text-gray-500 italic">&lt;!-- Cabeçalho --&gt;</span>{"\n"}

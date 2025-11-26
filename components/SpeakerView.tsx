@@ -24,12 +24,12 @@ As principais diferenças entre ambos, é que no metodo CMS, a facilidade e a ve
 
 Daqui em diante, o foco vai ser na criação de websites com o método de programação.`,
 
-  // Slide 4: IDE (Swapped: Was Slide 5)
+  // Slide 4: IDE 
   `Agora você me pergunta, onde escrever o código do site? Embora seja possível escrever código em um bloco de notas simples, isso seria como tentar cavar uma piscina com uma colher.
 
 Desenvolvedores utilizam Ambientes de Desenvolvimento (IDEs) como o VS Code, que são como escavadeiras de alta precisão. Essas ferramentas oferecem recursos essenciais, como o "Syntax Highlight", que usa cores para diferenciar comandos, textos e variáveis instantaneamente, e o "Auto-Complete", que fecha tags automaticamente, resultando em menos digitação e menos erros.`,
 
-  // Slide 5: Trinity (Swapped: Was Slide 4)
+  // Slide 5: Trinity 
   `Todo site moderno, incluindo os do método CMS explicado no slide anterior, são construídos sobre três pilares fundamentais, que podem ser explicados pela analogia do corpo humano.
 
 1. O primeiro pilar é o HTML, que atua como o esqueleto. Ele define a estrutura: onde fica o título, a imagem ou o botão. Sem o HTML, a página simplesmente não existe. É uma folha em branco.
@@ -59,31 +59,17 @@ Os computadores tem sites mais detalhados enquanto os celulares tem sites mais c
   // Slide 10: Design
   `O UI Design (User Interface) cuida da beleza visual — cores, tipografia e botões — para impressionar o usuário. Já o UX Design (User Experience) garante a facilidade de uso, assegurando que o usuário encontre o que precisa.`,
 
-  // Slide 11: Internet (Analogia Casa)
+  // Slide 11: Internet (Analogia Casa) - Agora "Como colocar o site no ar?"
   `Vamos relembrar o funcionamento da internet através da Analogia da Casa.
 
 1. O Domínio (ex: google.com) é o endereço que você digita no GPS para encontrar a localização.
 2. A Hospedagem é o terreno, um computador ligado 24 horas (Servidor) onde a casa é construída.
 3. Os Arquivos (HTML, CSS, imagens) são a casa em si, a estrutura que o visitante vê.`,
 
-  // Slide 12: Domains
-  `Agora que entendemos a estrutura, precisamos definir o endereço da nossa casa. O domínio nada mais é do que o seu nome único na rede.
-
-Tecnicamente, os computadores se comunicam através de sequências numéricas chamadas de IP, mas como nós humanos preferimos nomes fáceis de lembrar, usamos domínios como "google.com".
-
-E onde conseguimos isso? Em registradores oficiais. Para sites nacionais com final .br, utilizamos o Registro.br. Para nomes internacionais (.com), usamos serviços como GoDaddy ou Google Domains. O custo é bastante acessível, girando em torno de 40 reais por ano.`,
-
-  // Slide 13: Deploy
-  `Pra finalizar, com o domínio em mãos e o site construído, vamos para a etapa final: o Deploy.
-
-Enquanto o código está apenas no seu computador (o que chamamos de Localhost), ele é como um foguete na garagem: potente, mas ninguém pode ver.
-
-O processo de "Deploy" é exatamente o lançamento desse foguete para o espaço, ou seja, para a Nuvem, tornando seu site acessível globalmente para qualquer pessoa, em qualquer lugar do mundo.`,
-
-  // Slide 14: Resumo
+  // Slide 12: Resumo
   `Resumindo o que vimos hoje: Estrutura da Internet, Tecnologias (HTML/CSS/JS), Ferramentas de Design e como colocar tudo isso no ar.`,
 
-  // Slide 15: Fim
+  // Slide 13: Fim
   `Muito obrigado pela atenção de todos. Dúvidas?`
 ];
 

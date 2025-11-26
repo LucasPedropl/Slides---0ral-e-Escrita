@@ -11,17 +11,15 @@ import Slide6 from './components/slides/Slide6';
 import Slide8 from './components/slides/Slide8';
 import Slide9 from './components/slides/Slide9';
 import Slide11 from './components/slides/Slide11';
-import Slide12 from './components/slides/Slide12';
 import Slide13 from './components/slides/Slide13';
 import Slide14 from './components/slides/Slide14';
 import SlideCodeOverview from './components/slides/SlideCodeOverview';
 import SlideVSCode from './components/slides/SlideVSCode';
-import SlideDomains from './components/slides/SlideDomains';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 15; 
+  const totalSlides = 13; 
   const [direction, setDirection] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
   const channelRef = useRef<BroadcastChannel | null>(null);
@@ -139,18 +137,16 @@ const App: React.FC = () => {
     Slide1,             // 0. Intro
     Slide11,            // 1. Front vs Back
     Slide4,             // 2. CMS vs Code
-    Slide5,             // 3. IDE (Swapped with Slide3)
-    Slide3,             // 4. Trinity (HTML/CSS/JS) (Swapped with Slide5)
+    Slide5,             // 3. IDE 
+    Slide3,             // 4. Trinity (HTML/CSS/JS)
     SlideCodeOverview,  // 5. Overview
     SlideVSCode,        // 6. Hands-on
     Slide6,             // 7. Anatomy + Result Combined
     Slide8,             // 8. Responsivity
     Slide9,             // 9. Design 
-    Slide2,             // 10. How Internet Works
-    SlideDomains,       // 11. Domains
-    Slide12,            // 12. Deploy
-    Slide13,            // 13. Resumo
-    Slide14             // 14. Obrigado
+    Slide2,             // 10. How Internet Works (Updated Title)
+    Slide13,            // 11. Resumo
+    Slide14             // 12. Obrigado
   ];
 
   const MainContent = (

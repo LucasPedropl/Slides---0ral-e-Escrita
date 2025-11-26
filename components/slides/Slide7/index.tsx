@@ -89,12 +89,12 @@ const Slide7: React.FC = () => {
 {"  "}<span className="text-blue-400 font-bold">&lt;head&gt;</span>{"\n"}
 {"    "}<span className="text-blue-400 font-bold">&lt;link</span> <span className="text-cyan-300">rel</span>=<span className="text-green-300">"stylesheet"</span> <span className="text-cyan-300">href</span>=<span className="text-green-300">"style.css"</span> <span className="text-blue-400 font-bold">/&gt;</span>{"\n"}
 {"  "}<span className="text-blue-400 font-bold">&lt;/head&gt;</span>{"\n"}
-{"  "}<span className="text-blue-400 font-bold">&lt;body&gt;</span>{"\n\n"}
+{"  "}<span className="text-blue-400 font-bold">&lt;body&gt;</span>{"\n"}
 {"    "}<span className="text-blue-400 font-bold">&lt;div</span> <span className="text-cyan-300">class</span>=<span className="text-green-300">"container"</span><span className="text-blue-400 font-bold">&gt;</span>{"\n"}
 {"      "}<span className="text-blue-400 font-bold">&lt;header&gt;</span>Meu Site<span className="text-blue-400 font-bold">&lt;/header&gt;</span>{"\n"}
 {"      "}<span className="text-blue-400 font-bold">&lt;main&gt;</span>Carregando...<span className="text-blue-400 font-bold">&lt;/main&gt;</span>{"\n"}
 {"      "}<span className="text-blue-400 font-bold">&lt;footer&gt;</span>Copyright<span className="text-blue-400 font-bold">&lt;/footer&gt;</span>{"\n"}
-{"    "}<span className="text-blue-400 font-bold">&lt;/div&gt;</span>{"\n\n"}
+{"    "}<span className="text-blue-400 font-bold">&lt;/div&gt;</span>{"\n"}
 {"    "}<span className="text-blue-400 font-bold">&lt;script</span> <span className="text-cyan-300">src</span>=<span className="text-green-300">"script.js"</span><span className="text-blue-400 font-bold">&gt;&lt;/script&gt;</span>{"\n"}
 {"  "}<span className="text-blue-400 font-bold">&lt;/body&gt;</span>{"\n"}
 <span className="text-blue-400 font-bold">&lt;/html&gt;</span>

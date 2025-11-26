@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { GlassCard } from '../../ui/GlassCard';
-import { Layout, ArrowRight } from 'lucide-react';
+import { Layout, Wifi } from 'lucide-react';
 
 const Slide6: React.FC = () => {
   return (
@@ -16,7 +15,7 @@ const Slide6: React.FC = () => {
         </div>
         
         {/* Left Column: Content & Explanation */}
-        <div className="relative z-10 flex flex-col justify-center space-y-8 order-2 lg:order-1 pb-8 lg:pb-0">
+        <div className="relative z-10 flex flex-col justify-center space-y-8 order-2 lg:order-1 pb-8 lg:pb-0 animate-fade-in-up">
             <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm font-medium mb-4 backdrop-blur-sm">
                     <Layout className="w-4 h-4" />
@@ -59,61 +58,121 @@ const Slide6: React.FC = () => {
             </div>
         </div>
 
-        {/* Right Column: Visual Wireframe */}
-        <div className="relative z-10 w-full h-full flex items-center justify-center order-1 lg:order-2 perspective-1000">
-             
-             {/* The Blueprint Sheet */}
-             <div className="w-full max-w-md bg-[#0f172a]/80 backdrop-blur-xl border-2 border-dashed border-cyan-500/30 rounded-2xl p-6 flex flex-col gap-4 shadow-2xl transform rotate-y-[-10deg] rotate-x-[5deg] hover:rotate-0 transition-transform duration-700 h-[500px]">
+        {/* Right Column: Visual Monitor (Replaced Blueprint) */}
+        <div className="relative z-10 w-full h-full flex items-center justify-center order-1 lg:order-2 perspective-[1200px] animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            
+            {/* 1. CPU Tower (Right Side) */}
+            <div className="hidden xl:block absolute bottom-[10%] right-[-5%] w-24 h-[300px] bg-[#151515] rounded-xl border border-gray-800 shadow-2xl transform rotate-y-[-15deg] z-0">
+                 {/* Vents */}
+                 <div className="absolute top-8 left-4 right-4 h-32 flex flex-col gap-2 opacity-50">
+                    {[...Array(6)].map((_, i) => <div key={i} className="h-1 bg-black rounded-full"></div>)}
+                 </div>
+                {/* RGB Strip */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-1 h-20 bg-gradient-to-b from-purple-500 via-pink-500 to-blue-500 rounded-full blur-[4px] animate-pulse"></div>
+            </div>
+
+            {/* 2. Monitor Group */}
+            <div className="relative flex flex-col items-center transform translate-y-4">
                 
-                <div className="absolute -top-3 left-6 bg-cyan-900 text-cyan-200 text-xs px-2 py-1 rounded border border-cyan-500/50 font-mono">
-                    wireframe_v2.0
-                </div>
-
-                {/* Header Block */}
-                <div className="w-full h-16 rounded-xl bg-purple-500/10 border border-purple-500/40 flex items-center justify-between px-4 group hover:bg-purple-500/20 transition-colors relative flex-shrink-0">
-                    <span className="text-purple-300 font-bold text-sm tracking-wider">HEADER</span>
-                    <span className="text-[10px] font-mono bg-purple-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;header&gt;</span>
-                </div>
-
-                {/* Middle Section (Nav - Main - Aside) */}
-                <div className="flex-1 flex gap-4 min-h-0">
+                {/* Screen Frame */}
+                <div className="relative w-[95vw] lg:w-[600px] aspect-video bg-[#0f0f0f] rounded-t-2xl rounded-b-lg border-t-8 border-x-8 border-b-[24px] border-[#1a1a1a] shadow-[0_0_120px_rgba(34,211,238,0.15)] overflow-hidden flex flex-col z-20 group transform rotate-x-2">
                     
-                    {/* Nav (Left Sidebar) */}
-                    <div className="w-1/5 rounded-xl bg-cyan-500/10 border border-cyan-500/40 p-2 flex flex-col items-center gap-2 group hover:bg-cyan-500/20 transition-colors relative">
-                        <span className="text-cyan-300 font-bold text-[10px] tracking-wider">NAV</span>
-                        <div className="w-full h-1 bg-cyan-400/20 rounded"></div>
-                        <div className="w-full h-1 bg-cyan-400/20 rounded"></div>
-                        <div className="w-full h-1 bg-cyan-400/20 rounded"></div>
-                        <span className="absolute bottom-2 left-1 text-[8px] font-mono bg-cyan-500 text-white px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;nav&gt;</span>
+                    {/* Screen Reflection/Glare */}
+                    <div className="absolute top-0 right-0 w-[80%] h-full bg-gradient-to-l from-white/5 to-transparent skew-x-12 pointer-events-none z-50 mix-blend-overlay"></div>
+
+                    {/* Browser Toolbar Mockup */}
+                    <div className="h-9 bg-[#252526] w-full flex items-center px-4 gap-4 border-b border-black/50 z-30 flex-shrink-0">
+                        <div className="flex gap-1.5">
+                            <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                        </div>
+                        <div className="flex-1 h-6 bg-[#1a1a1a] rounded flex items-center justify-center text-[11px] text-gray-500 font-mono border border-white/5 relative group/url">
+                            <span className="group-hover/url:text-white transition-colors">127.0.0.1:5500/anatomy.html</span>
+                            <div className="absolute right-2 text-green-500/50">
+                                <Wifi className="w-3 h-3" />
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Main (Center) */}
-                    <div className="flex-1 rounded-xl bg-blue-500/10 border border-blue-500/40 p-4 flex flex-col gap-2 group hover:bg-blue-500/20 transition-colors relative">
-                         <div className="flex justify-between items-center">
-                            <span className="text-blue-300 font-bold text-sm tracking-wider">MAIN</span>
-                            <span className="text-[10px] font-mono bg-blue-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;main&gt;</span>
-                         </div>
-                         <div className="w-full h-2 bg-blue-400/20 rounded mt-2"></div>
-                         <div className="w-3/4 h-2 bg-blue-400/20 rounded"></div>
-                         <div className="w-full h-full bg-blue-400/10 rounded mt-2 border border-blue-400/10"></div>
-                    </div>
-                    
-                    {/* Aside (Right Sidebar) */}
-                    <div className="w-1/4 rounded-xl bg-pink-500/10 border border-pink-500/40 p-2 flex flex-col items-center gap-2 group hover:bg-pink-500/20 transition-colors relative">
-                        <span className="text-pink-300 font-bold text-[10px] tracking-wider">ASIDE</span>
-                        <div className="w-full h-1/3 bg-pink-400/10 rounded border border-pink-400/10"></div>
-                        <div className="w-full h-1/3 bg-pink-400/10 rounded border border-pink-400/10"></div>
-                        <span className="absolute bottom-2 right-1 text-[8px] font-mono bg-pink-500 text-white px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;aside&gt;</span>
+                    {/* THE ANATOMY RESULT (INSIDE MONITOR) */}
+                    <div className="flex-1 bg-[#121212] flex flex-col p-4 gap-3 overflow-hidden font-sans select-none relative">
+                        
+                        {/* Background Grid */}
+                        <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none" 
+                            style={{ 
+                                backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
+                                backgroundSize: '20px 20px' 
+                            }}>
+                        </div>
+
+                        {/* HEADER */}
+                        <header className="h-14 w-full bg-purple-600/20 backdrop-blur-md rounded-lg flex items-center justify-between px-4 border border-purple-500/30 shadow-lg z-10 relative group hover:bg-purple-600/30 transition-colors">
+                            <div className="flex items-center gap-2">
+                                <span className="text-purple-300 font-bold tracking-widest text-xs">HEADER</span>
+                            </div>
+                            <div className="absolute -top-2 left-2 text-[8px] font-mono bg-purple-600 text-white px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;header&gt;</div>
+                        </header>
+
+                        {/* MIDDLE SECTION */}
+                        <div className="flex-1 flex gap-3 w-full z-10 min-h-0">
+                            {/* NAV */}
+                            <nav className="w-1/5 h-full bg-cyan-600/10 backdrop-blur-md rounded-lg flex flex-col items-center py-4 border border-cyan-500/30 shadow-lg relative gap-2 group hover:bg-cyan-600/20 transition-colors">
+                                <span className="text-cyan-400 font-bold tracking-widest text-[10px] mb-2">NAV</span>
+                                <div className="w-1/2 h-1.5 bg-cyan-500/30 rounded"></div>
+                                <div className="w-1/2 h-1.5 bg-cyan-500/30 rounded"></div>
+                                <div className="absolute -top-2 left-1 text-[8px] font-mono bg-cyan-600 text-white px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;nav&gt;</div>
+                            </nav>
+
+                            {/* MAIN */}
+                            <main className="flex-1 h-full bg-blue-600/10 backdrop-blur-md rounded-lg flex flex-col items-center justify-center border border-blue-500/30 shadow-lg relative group hover:bg-blue-600/20 transition-colors">
+                                <span className="text-blue-400 font-bold tracking-widest text-sm">MAIN</span>
+                                <div className="w-3/4 h-2 bg-blue-500/20 rounded mt-2"></div>
+                                <div className="w-1/2 h-2 bg-blue-500/20 rounded mt-1"></div>
+                                <div className="absolute -top-2 left-2 text-[8px] font-mono bg-blue-600 text-white px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;main&gt;</div>
+                            </main>
+
+                            {/* ASIDE */}
+                            <aside className="w-1/4 h-full bg-pink-500/10 backdrop-blur-md rounded-lg flex flex-col p-2 border border-pink-500/30 shadow-lg relative group hover:bg-pink-500/20 transition-colors">
+                                <span className="text-pink-400 font-bold tracking-widest text-[10px] mb-2 text-center">ASIDE</span>
+                                <div className="w-full h-1/3 bg-pink-500/20 rounded mb-1"></div>
+                                <div className="absolute -top-2 right-1 text-[8px] font-mono bg-pink-500 text-white px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;aside&gt;</div>
+                            </aside>
+                        </div>
+
+                        {/* FOOTER */}
+                        <footer className="h-10 w-full bg-gray-600/10 backdrop-blur-md rounded-lg flex items-center justify-center border border-gray-500/30 shadow-lg z-10 relative group hover:bg-gray-600/20 transition-colors">
+                            <span className="text-gray-400 font-bold tracking-widest text-[10px]">FOOTER</span>
+                            <div className="absolute -top-2 left-2 text-[8px] font-mono bg-gray-600 text-white px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;footer&gt;</div>
+                        </footer>
+
                     </div>
                 </div>
 
-                {/* Footer Block */}
-                <div className="w-full h-12 rounded-xl bg-gray-500/10 border border-gray-500/40 flex items-center justify-between px-4 group hover:bg-gray-500/20 transition-colors relative flex-shrink-0">
-                    <span className="text-gray-300 font-bold text-sm tracking-wider">FOOTER</span>
-                    <span className="text-[10px] font-mono bg-gray-500 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">&lt;footer&gt;</span>
+                {/* Stand */}
+                <div className="flex flex-col items-center">
+                    <div className="w-20 h-16 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f] z-10 relative shadow-inner"></div>
+                    <div className="w-32 h-2 bg-[#252525] rounded-full shadow-[0_10px_20px_rgba(0,0,0,0.5)] z-10"></div>
+                    {/* Reflection on desk */}
+                    <div className="w-48 h-8 bg-black/40 blur-xl rounded-full -mt-2"></div>
                 </div>
 
-             </div>
+                {/* Peripherals (Foreground) */}
+                <div className="absolute -bottom-24 flex gap-12 items-start opacity-90 scale-90">
+                    {/* Keyboard */}
+                    <div className="w-[300px] h-[15px] bg-[#252525] rounded-t-lg transform skew-x-12 shadow-2xl relative border-t border-white/5">
+                        <div className="absolute top-1 left-2 right-2 flex gap-0.5 justify-center">
+                             {[...Array(12)].map((_,i) => <div key={i} className="flex-1 h-2 bg-[#111] rounded-[1px]"></div>)}
+                        </div>
+                    </div>
+                    {/* Mouse */}
+                    <div className="w-16 h-8 bg-[#252525] rounded-t-full shadow-2xl relative border-t border-white/5">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-black"></div>
+                        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-3 bg-cyan-500 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>

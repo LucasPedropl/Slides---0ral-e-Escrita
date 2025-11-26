@@ -11,14 +11,12 @@ import Slide6 from './components/slides/Slide6';
 import Slide7 from './components/slides/Slide7';
 import Slide8 from './components/slides/Slide8';
 import Slide9 from './components/slides/Slide9';
-import Slide10 from './components/slides/Slide10';
 import Slide11 from './components/slides/Slide11';
 import Slide12 from './components/slides/Slide12';
 import Slide13 from './components/slides/Slide13';
 import Slide14 from './components/slides/Slide14';
 import SlideCSS from './components/slides/SlideCSS';
 import SlideJS from './components/slides/SlideJS';
-import SlideResult from './components/slides/SlideResult';
 import SlideCodeOverview from './components/slides/SlideCodeOverview';
 import SlideVSCode from './components/slides/SlideVSCode';
 import SlideDomains from './components/slides/SlideDomains';
@@ -28,8 +26,9 @@ const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   // Re-calculate based on new slide count
-  // 19 original + 1 new = 20 slides
-  const totalSlides = 20; 
+  // Removed SlideResult and Slide10 (SEO). 
+  // Previous count: 20. Removed 2. New count: 18.
+  const totalSlides = 18; 
   
   const [direction, setDirection] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
@@ -120,7 +119,6 @@ const App: React.FC = () => {
 
   const slides = [
     Slide1,             // 0. Intro
-    // Slide2 removed from here (How Internet Works)
     Slide11,            // 1. Front vs Back
     Slide4,             // 2. CMS vs Code
     Slide3,             // 3. Trinity (HTML/CSS/JS)
@@ -130,16 +128,14 @@ const App: React.FC = () => {
     SlideJS,            // 7. JS
     SlideCodeOverview,  // 8. Overview
     SlideVSCode,        // 9. Hands-on
-    SlideResult,        // 10. Result
-    Slide6,             // 11. Anatomy
-    Slide8,             // 12. Responsivity
-    Slide10,            // 13. SEO (Swapped with Design)
-    Slide9,             // 14. Design (Swapped with SEO)
-    Slide2,             // 15. How Internet Works (Moved before Launch)
-    SlideDomains,       // 16. NEW Domains
-    Slide12,            // 17. Deploy
-    Slide13,            // 18. Resumo
-    Slide14             // 19. Obrigado
+    Slide6,             // 10. Anatomy (Combined with Computer Visual)
+    Slide8,             // 11. Responsivity
+    Slide9,             // 12. Design 
+    Slide2,             // 13. How Internet Works
+    SlideDomains,       // 14. Domains
+    Slide12,            // 15. Deploy
+    Slide13,            // 16. Resumo
+    Slide14             // 17. Obrigado
   ];
 
   const MainContent = (

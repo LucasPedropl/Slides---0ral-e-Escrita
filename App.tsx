@@ -65,10 +65,10 @@ const App: React.FC = () => {
     setIsPrinting(true);
 
     // 2. Wait for React to render the DOM, then trigger browser print
-    // Increased timeout to 1000ms to ensure fonts and styles are fully loaded before print dialog
+    // Increased timeout to 1500ms to ensure fonts, styles and animation resets are fully processed
     setTimeout(() => {
       window.print();
-    }, 1000);
+    }, 1500);
   }, []);
 
   // Listener to turn off print mode after print dialog closes

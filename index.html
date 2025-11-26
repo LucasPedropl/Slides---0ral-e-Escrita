@@ -91,7 +91,7 @@
         border-radius: 4px;
       }
 
-      /* Print Styles */
+      /* Print Styles - HIGHLY SPECIFIC TO FIX PDF EXPORT */
       @media print {
         @page {
            size: landscape;
@@ -109,11 +109,45 @@
         }
 
         /* 
-           CRÍTICO: Desabilitar animações. 
-           Animações como 'fade-in-up' começam com opacity: 0. Se o print ocorrer antes do fim, 
-           ou se o motor de print ignorar o estado final, o texto fica invisível.
-           Forçamos opacity: 1 e resetamos transforms.
+           BIG FIX: Force opacity and visibility on all layout elements.
+           This overrides any 'opacity-0' from initial animation states.
         */
+        h1, h2, h3, h4, h5, h6 {
+            opacity: 1 !important;
+            visibility: visible !important;
+            color: #ffffff !important; /* Force white titles */
+            text-shadow: none !important; /* Remove neon shadows that glitch in PDF */
+            filter: none !important;
+        }
+
+        p, span, li, strong, em {
+             opacity: 1 !important;
+             visibility: visible !important;
+        }
+        
+        /* Force body text to be visible (light gray) */
+        p {
+            color: #e5e7eb !important; 
+        }
+
+        /* 
+           GRADIENT TEXT FIX:
+           PDF engines often fail to render background-clip: text correctly.
+           We force these elements to be solid white.
+        */
+        .text-transparent, 
+        [class*="text-transparent"], 
+        .bg-clip-text {
+           -webkit-text-fill-color: #ffffff !important;
+           color: #ffffff !important;
+           background: none !important;
+           background-clip: border-box !important;
+           -webkit-background-clip: border-box !important;
+           text-shadow: none !important;
+           filter: none !important;
+        }
+
+        /* Disable animations explicitly and reset transforms */
         *, *::before, *::after {
             animation: none !important;
             transition: none !important;
@@ -129,40 +163,13 @@
             filter: none !important;
         }
 
-        /* Resetar filtros de blur que podem causar problemas na rasterização */
-        .backdrop-blur-xl, .backdrop-blur-md, .backdrop-blur-sm {
+        /* Reset Glassmorphism for cleaner print */
+        .backdrop-blur-xl, .backdrop-blur-md, .backdrop-blur-sm, [class*="backdrop-blur"] {
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            /* Fallback visual para vidro */
-            background-color: rgba(25, 10, 40, 0.8) !important;
+            /* Solid dark background to ensure white text is visible */
+            background-color: rgba(20, 20, 40, 0.95) !important;
             border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-
-        /* Corrigir textos gradientes que ficam invisíveis na impressão */
-        .text-transparent, 
-        [class*="text-transparent"], 
-        .bg-clip-text {
-           -webkit-text-fill-color: #d8b4fe !important;
-           color: #d8b4fe !important;
-           background: none !important;
-           background-clip: border-box !important;
-           -webkit-background-clip: border-box !important;
-           text-shadow: none !important;
-           filter: none !important;
-        }
-
-        /* Garantir visibilidade dos Headers */
-        h1, h2, h3, h4, h5, h6 {
-            color: #ffffff !important;
-            text-shadow: none !important;
-            opacity: 1 !important;
-        }
-
-        /* Tratamento específico para spans dentro de headers (onde costumam estar os gradientes) */
-        h1 span, h2 span, h3 span {
-             color: #d8b4fe !important;
-             -webkit-text-fill-color: #d8b4fe !important;
-             opacity: 1 !important;
         }
 
         /* Hide interactive elements and noise */
@@ -175,6 +182,10 @@
             display: block !important;
             background-color: #0a0118 !important;
             width: 100% !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9999;
         }
 
         .print-slide {
@@ -192,7 +203,8 @@
 
         /* Scale content to fit the page without breaking layout */
         .print-slide > div {
-             transform: scale(0.65) !important; 
+             /* Slightly smaller scale to ensure no clipping of margins */
+             transform: scale(0.6) !important; 
              transform-origin: center center !important;
              width: 1920px !important;
              height: 1080px !important;

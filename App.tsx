@@ -21,11 +21,16 @@ import SlideJS from './components/slides/SlideJS';
 import SlideResult from './components/slides/SlideResult';
 import SlideCodeOverview from './components/slides/SlideCodeOverview';
 import SlideVSCode from './components/slides/SlideVSCode';
+import SlideDomains from './components/slides/SlideDomains';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 19; 
+  
+  // Re-calculate based on new slide count
+  // 19 original + 1 new = 20 slides
+  const totalSlides = 20; 
+  
   const [direction, setDirection] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
   
@@ -114,25 +119,27 @@ const App: React.FC = () => {
   };
 
   const slides = [
-    Slide1,
-    Slide2,
-    Slide11,
-    Slide4,
-    Slide3,
-    Slide5,
-    Slide7,
-    SlideCSS,
-    SlideJS,
-    SlideCodeOverview,
-    SlideVSCode,
-    SlideResult,
-    Slide6,
-    Slide8,
-    Slide9,
-    Slide10,
-    Slide12,
-    Slide13,
-    Slide14
+    Slide1,             // 0. Intro
+    // Slide2 removed from here (How Internet Works)
+    Slide11,            // 1. Front vs Back
+    Slide4,             // 2. CMS vs Code
+    Slide3,             // 3. Trinity (HTML/CSS/JS)
+    Slide5,             // 4. IDE
+    Slide7,             // 5. HTML
+    SlideCSS,           // 6. CSS
+    SlideJS,            // 7. JS
+    SlideCodeOverview,  // 8. Overview
+    SlideVSCode,        // 9. Hands-on
+    SlideResult,        // 10. Result
+    Slide6,             // 11. Anatomy
+    Slide8,             // 12. Responsivity
+    Slide10,            // 13. SEO (Swapped with Design)
+    Slide9,             // 14. Design (Swapped with SEO)
+    Slide2,             // 15. How Internet Works (Moved before Launch)
+    SlideDomains,       // 16. NEW Domains
+    Slide12,            // 17. Deploy
+    Slide13,            // 18. Resumo
+    Slide14             // 19. Obrigado
   ];
 
   const MainContent = (

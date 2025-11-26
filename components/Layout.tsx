@@ -5,6 +5,12 @@ import { Circle, ChevronLeft, ChevronRight, Menu, Printer, Maximize, Minimize, M
 
 interface LayoutProps extends NavProps {
   children: React.ReactNode;
+  currentSlide: number;
+  totalSlides: number;
+  nextSlide: () => void;
+  prevSlide: () => void;
+  goToSlide: (index: number) => void;
+  onPrint?: () => void;
 }
 
 const Layout: React.FC<LayoutProps> = ({ 
@@ -34,10 +40,6 @@ const Layout: React.FC<LayoutProps> = ({
         });
       }
     }
-  };
-
-  const openSpeakerView = () => {
-    window.open('/?view=speaker', '_blank', 'width=1000,height=800');
   };
 
   // Logic to handle auto-hiding controls in fullscreen
@@ -123,15 +125,6 @@ const Layout: React.FC<LayoutProps> = ({
           {String(currentSlide + 1).padStart(2, '0')} <span className="text-gray-600">/</span> {String(totalSlides).padStart(2, '0')}
         </span>
         
-        {/* Speaker View Button */}
-        <button 
-             onClick={openSpeakerView}
-             className="p-3 rounded-full bg-white/5 hover:bg-white/20 hover:text-purple-400 transition-all active:scale-95 group border-r border-white/10 mr-1"
-             title="Modo Orador (Roteiro)"
-        >
-             <Mic2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
-        </button>
-
         {/* Fullscreen Button */}
         <button 
              onClick={toggleFullscreen}

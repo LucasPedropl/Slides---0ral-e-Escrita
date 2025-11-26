@@ -114,9 +114,6 @@ O processo de "Deploy" é exatamente o lançamento desse foguete para o espaço,
   `Muito obrigado pela atenção de todos. Dúvidas?`
 ];
 
-// Mapping slides if necessary, but assuming array index matches for now 
-// based on the restructuring in App.tsx.
-
 const SpeakerView: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = scriptData.length;
@@ -163,21 +160,21 @@ const SpeakerView: React.FC = () => {
   }, [currentSlide]);
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-[#121212] text-white flex flex-col font-sans overflow-hidden h-screen">
       {/* Header */}
-      <header className="h-16 bg-[#1e1e1e] border-b border-white/10 flex items-center justify-between px-6">
-        <div className="flex items-center gap-3 text-purple-400">
-           <Mic2 className="w-5 h-5" />
-           <span className="font-bold tracking-wider">MODO ORADOR</span>
+      <header className="h-12 bg-[#1e1e1e] border-b border-white/10 flex items-center justify-between px-4 shrink-0">
+        <div className="flex items-center gap-2 text-purple-400">
+           <Mic2 className="w-4 h-4" />
+           <span className="font-bold tracking-wider text-sm">MODO ORADOR</span>
         </div>
-        <div className="flex items-center gap-4">
-            <div className="text-sm font-mono text-gray-400">
-                SLIDE <span className="text-white text-xl font-bold">{currentSlide + 1}</span> / {totalSlides}
+        <div className="flex items-center gap-3">
+            <div className="text-xs font-mono text-gray-400">
+                SLIDE <span className="text-white text-lg font-bold">{currentSlide + 1}</span> / {totalSlides}
             </div>
             {/* Live Indicator */}
-            <div className="flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-xs font-bold text-red-400">SYNC ATIVO</span>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 bg-red-500/10 border border-red-500/20 rounded-full">
+                <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
+                <span className="text-[10px] font-bold text-red-400">SYNC ATIVO</span>
             </div>
         </div>
       </header>
@@ -185,11 +182,9 @@ const SpeakerView: React.FC = () => {
       {/* Main Content */}
       <main className="flex-1 flex overflow-hidden">
         
-        {/* Previous/Next Preview (Optional - keeping simple for now) */}
-        
         {/* Current Script */}
-        <div className="flex-1 max-w-4xl mx-auto p-8 lg:p-12 overflow-y-auto flex flex-col justify-center">
-             <div className="text-4xl md:text-5xl lg:text-6xl font-medium leading-relaxed text-gray-100 transition-all duration-300">
+        <div className="flex-1 max-w-5xl mx-auto p-4 lg:p-6 overflow-y-auto flex flex-col justify-start">
+             <div className="text-xl md:text-2xl lg:text-3xl font-medium leading-normal text-gray-100 whitespace-pre-line">
                 {scriptData[currentSlide] || "(Sem roteiro para este slide)"}
              </div>
         </div>
@@ -197,19 +192,18 @@ const SpeakerView: React.FC = () => {
       </main>
 
       {/* Footer Controls */}
-      <footer className="h-24 bg-[#1e1e1e] border-t border-white/10 flex items-center justify-between px-8">
+      <footer className="h-16 bg-[#1e1e1e] border-t border-white/10 flex items-center justify-between px-6 shrink-0">
          <button 
            onClick={prevSlide}
            disabled={currentSlide === 0}
-           className="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
          >
-            <ArrowLeft className="w-6 h-6" />
-            <span className="font-bold">ANTERIOR</span>
+            <ArrowLeft className="w-5 h-5" />
+            <span className="font-bold text-sm">ANTERIOR</span>
          </button>
 
-         <div className="flex flex-col items-center">
-             <span className="text-xs text-gray-500 uppercase tracking-widest mb-1">Próximo Slide</span>
-             <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
+         <div className="flex flex-col items-center flex-1 mx-4">
+             <div className="w-full max-w-md h-1 bg-white/10 rounded-full overflow-hidden">
                  <div 
                     className="h-full bg-purple-500 transition-all duration-300" 
                     style={{ width: `${((currentSlide + 1) / totalSlides) * 100}%` }}
@@ -220,10 +214,10 @@ const SpeakerView: React.FC = () => {
          <button 
            onClick={nextSlide}
            disabled={currentSlide === totalSlides - 1}
-           className="flex items-center gap-3 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-900/20"
+           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-900/20"
          >
-            <span className="font-bold">PRÓXIMO</span>
-            <ArrowRight className="w-6 h-6" />
+            <span className="font-bold text-sm">PRÓXIMO</span>
+            <ArrowRight className="w-5 h-5" />
          </button>
       </footer>
     </div>

@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from './components/Layout';
 import { ScaleWrapper } from './components/ScaleWrapper';
-import ReportView from './components/ReportView';
 import Slide1 from './components/slides/Slide1';
 import Slide2 from './components/slides/Slide2';
 import Slide3 from './components/slides/Slide3';
@@ -29,9 +28,6 @@ const App: React.FC = () => {
   const [direction, setDirection] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
   
-  // New State for Report View
-  const [showReport, setShowReport] = useState(false);
-
   const nextSlide = useCallback(() => {
     setDirection(1);
     setCurrentSlide((prev) => {
@@ -82,8 +78,6 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (showReport) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
         nextSlide();
@@ -93,7 +87,7 @@ const App: React.FC = () => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide, showReport]);
+  }, [nextSlide, prevSlide]);
 
   const variants = {
     enter: (direction: number) => ({
@@ -139,10 +133,6 @@ const App: React.FC = () => {
     Slide14
   ];
 
-  if (showReport) {
-    return <ReportView onBack={() => setShowReport(false)} />;
-  }
-
   const MainContent = (
     <Layout
       currentSlide={currentSlide}
@@ -151,7 +141,6 @@ const App: React.FC = () => {
       prevSlide={prevSlide}
       goToSlide={goToSlide}
       onPrint={handlePrint}
-      onToggleReport={() => setShowReport(true)}
     >
       <div className="relative w-full h-full print:hidden">
         <AnimatePresence initial={false} mode="wait" custom={direction}>

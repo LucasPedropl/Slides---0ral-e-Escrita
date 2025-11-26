@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { NavProps } from '../types';
-import { Circle, ChevronLeft, ChevronRight, Menu, Printer, Maximize, Minimize, FileText } from 'lucide-react';
+import { Circle, ChevronLeft, ChevronRight, Menu, Printer, Maximize, Minimize } from 'lucide-react';
 
 interface LayoutProps extends NavProps {
   children: React.ReactNode;
@@ -14,8 +14,7 @@ const Layout: React.FC<LayoutProps> = ({
   nextSlide, 
   prevSlide,
   goToSlide,
-  onPrint,
-  onToggleReport
+  onPrint
 }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
@@ -102,15 +101,6 @@ const Layout: React.FC<LayoutProps> = ({
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
              </button>
           ))}
-          {/* New Relatório Link */}
-          <button 
-            onClick={onToggleReport}
-            className="hover:text-green-400 transition-colors relative group flex items-center gap-2"
-          >
-             <FileText className="w-4 h-4" />
-             Relatório
-             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full"></span>
-          </button>
         </nav>
         <button className="md:hidden text-white">
             <Menu className="w-6 h-6" />

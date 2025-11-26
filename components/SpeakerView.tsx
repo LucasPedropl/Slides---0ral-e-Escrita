@@ -183,8 +183,8 @@ const SpeakerView: React.FC = () => {
       <main className="flex-1 flex overflow-hidden">
         
         {/* Current Script */}
-        <div className="flex-1 max-w-5xl mx-auto p-4 lg:p-6 overflow-y-auto flex flex-col justify-start">
-             <div className="text-xl md:text-2xl lg:text-3xl font-medium leading-normal text-gray-100 whitespace-pre-line">
+        <div className="flex-1 w-full max-w-[95%] mx-auto p-4 lg:p-6 overflow-y-auto flex flex-col justify-center items-center">
+             <div className="text-xl md:text-2xl lg:text-3xl font-medium leading-normal text-gray-100 whitespace-pre-line text-center">
                 {scriptData[currentSlide] || "(Sem roteiro para este slide)"}
              </div>
         </div>

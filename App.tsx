@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Layout from './components/Layout';
 import { ScaleWrapper } from './components/ScaleWrapper';
 import Slide1 from './components/slides/Slide1';
@@ -24,60 +24,81 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // Re-calculate based on new slide count
-  // Removed SlideResult and Slide10 (SEO). 
-  // Previous count: 20. Removed 2. New count: 18.
   const totalSlides = 18; 
-  
   const [direction, setDirection] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
+  const channelRef = useRef<BroadcastChannel | null>(null);
   
+  // Synchronization Logic
+  useEffect(() => {
+    channelRef.current = new BroadcastChannel('presentation_sync');
+
+    channelRef.current.onmessage = (event) => {
+      const { type, index } = event.data;
+      if (type === 'CHANGE_SLIDE' && index !== currentSlide) {
+        setDirection(index > currentSlide ? 1 : -1);
+        setCurrentSlide(index);
+      } else if (type === 'GET_STATE') {
+        // Send current state to new listeners (e.g. newly opened speaker view)
+        channelRef.current?.postMessage({ type: 'CHANGE_SLIDE', index: currentSlide });
+      }
+    };
+
+    return () => {
+      channelRef.current?.close();
+    };
+  }, [currentSlide]);
+
+  // Helper to change slide and sync
+  const updateSlide = useCallback((newIndex: number) => {
+    setCurrentSlide(newIndex);
+    channelRef.current?.postMessage({ type: 'CHANGE_SLIDE', index: newIndex });
+  }, []);
+
   const nextSlide = useCallback(() => {
     setDirection(1);
     setCurrentSlide((prev) => {
-      if (document.fullscreenElement) {
-        return prev === totalSlides - 1 ? prev : prev + 1;
-      }
-      return (prev + 1) % totalSlides;
+      const next = document.fullscreenElement 
+        ? (prev === totalSlides - 1 ? prev : prev + 1)
+        : (prev + 1) % totalSlides;
+      
+      // Sync
+      channelRef.current?.postMessage({ type: 'CHANGE_SLIDE', index: next });
+      return next;
     });
   }, [totalSlides]);
 
   const prevSlide = useCallback(() => {
     setDirection(-1);
     setCurrentSlide((prev) => {
-      if (document.fullscreenElement) {
-        return prev === 0 ? prev : prev - 1;
-      }
-      return (prev - 1 + totalSlides) % totalSlides;
+      const next = document.fullscreenElement
+        ? (prev === 0 ? prev : prev - 1)
+        : (prev - 1 + totalSlides) % totalSlides;
+      
+      // Sync
+      channelRef.current?.postMessage({ type: 'CHANGE_SLIDE', index: next });
+      return next;
     });
   }, [totalSlides]);
 
   const goToSlide = (index: number) => {
     setDirection(index > currentSlide ? 1 : -1);
     if (index >= 0 && index < totalSlides) {
-      setCurrentSlide(index);
+      updateSlide(index);
     }
   };
 
-  // Improved Native Print Handler
   const handlePrint = useCallback(() => {
-    // 1. Activate Print Mode (renders all slides in the DOM)
     setIsPrinting(true);
-
-    // 2. Wait for React to render the DOM, then trigger browser print
-    // Increased timeout to 1500ms to ensure fonts, styles and animation resets are fully processed
     setTimeout(() => {
       window.print();
     }, 1500);
   }, []);
 
-  // Listener to turn off print mode after print dialog closes
   useEffect(() => {
     const handleAfterPrint = () => {
       setIsPrinting(false);
     };
-
     window.addEventListener("afterprint", handleAfterPrint);
     return () => window.removeEventListener("afterprint", handleAfterPrint);
   }, []);
@@ -128,7 +149,7 @@ const App: React.FC = () => {
     SlideJS,            // 7. JS
     SlideCodeOverview,  // 8. Overview
     SlideVSCode,        // 9. Hands-on
-    Slide6,             // 10. Anatomy (Combined with Computer Visual)
+    Slide6,             // 10. Anatomy + Result Combined
     Slide8,             // 11. Responsivity
     Slide9,             // 12. Design 
     Slide2,             // 13. How Internet Works
@@ -172,14 +193,12 @@ const App: React.FC = () => {
 
   return (
     <>
-      {/* Normal View (Scaled) - Hidden when printing via CSS */}
       <div className="print:hidden">
         <ScaleWrapper>
           {MainContent}
         </ScaleWrapper>
       </div>
 
-      {/* Print Mode View - Only Visible in Print/PDF Export */}
       {isPrinting && (
         <div id="print-container" className="hidden print:block absolute top-0 left-0">
           {slides.map((SlideComponent, index) => (
@@ -188,13 +207,11 @@ const App: React.FC = () => {
               className="print-slide w-[1920px] h-[1080px] overflow-hidden relative flex flex-col items-center justify-center"
               style={{ 
                 pageBreakAfter: 'always',
-                // Restore Purple Gradient for PDF
                 background: 'radial-gradient(circle at 50% 30%, #3b0764 0%, #0a0118 70%)',
                 WebkitPrintColorAdjust: 'exact',
                 printColorAdjust: 'exact'
               }}
             >
-               {/* Force 100% scale for PDF output */}
                <div className="w-full h-full flex items-center justify-center transform scale-100">
                   <SlideComponent />
                </div>

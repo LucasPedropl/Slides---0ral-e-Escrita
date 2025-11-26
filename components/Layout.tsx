@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { NavProps } from '../types';
-import { Circle, ChevronLeft, ChevronRight, Menu, Printer, Maximize, Minimize } from 'lucide-react';
+import { Circle, ChevronLeft, ChevronRight, Menu, Printer, Maximize, Minimize, Mic2 } from 'lucide-react';
 
 interface LayoutProps extends NavProps {
   children: React.ReactNode;
@@ -36,31 +36,30 @@ const Layout: React.FC<LayoutProps> = ({
     }
   };
 
+  const openSpeakerView = () => {
+    window.open('/?view=speaker', '_blank', 'width=1000,height=800');
+  };
+
   // Logic to handle auto-hiding controls in fullscreen
   useEffect(() => {
     const handleMouseMove = () => {
-      // Always show controls on movement
       setShowControls(true);
-
-      // If in fullscreen, restart the hide timer
       if (isFullscreen) {
         if (controlsTimeoutRef.current) {
           clearTimeout(controlsTimeoutRef.current);
         }
         controlsTimeoutRef.current = setTimeout(() => {
           setShowControls(false);
-        }, 3000); // Hide after 3 seconds of inactivity
+        }, 3000); 
       }
     };
 
     if (isFullscreen) {
       window.addEventListener('mousemove', handleMouseMove);
-      // Start the timer immediately upon entering fullscreen
       controlsTimeoutRef.current = setTimeout(() => {
         setShowControls(false);
       }, 3000);
     } else {
-      // If not fullscreen, always show controls and clear timers
       setShowControls(true);
       if (controlsTimeoutRef.current) {
         clearTimeout(controlsTimeoutRef.current);
@@ -76,16 +75,15 @@ const Layout: React.FC<LayoutProps> = ({
   }, [isFullscreen]);
 
   return (
-    // Changed h-screen to h-full because it is now wrapped in a fixed-size container
     <div className="h-full w-full bg-background text-white font-sans overflow-hidden flex flex-col relative selection:bg-primary selection:text-white print:h-auto print:overflow-visible">
-      {/* Background Ambience with Animation (Hidden on Print) */}
+      {/* Background Ambience */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none print:hidden">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-purple-900/30 rounded-full blur-[120px] animate-blob" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-900/20 rounded-full blur-[120px] animate-blob animation-delay-2000" />
         <div className="absolute top-[40%] right-[20%] w-[30%] h-[30%] bg-fuchsia-900/20 rounded-full blur-[100px] animate-blob animation-delay-4000" />
       </div>
 
-      {/* Header (Hidden on Print) */}
+      {/* Header */}
       <header className="w-full p-6 md:p-8 flex justify-between items-center z-50 relative flex-shrink-0 print:hidden">
         <div className="flex items-center gap-3 group cursor-pointer" onClick={() => goToSlide(0)}>
           <div className="relative">
@@ -114,17 +112,26 @@ const Layout: React.FC<LayoutProps> = ({
         </div>
       </main>
 
-      {/* Navigation Controls (Hidden on Print) */}
+      {/* Navigation Controls */}
       <div 
         className={`fixed bottom-8 right-8 z-50 flex items-center gap-6 backdrop-blur-sm bg-black/20 p-3 rounded-full border border-white/10 shadow-glass print:hidden transition-all duration-500 ${
           !showControls && isFullscreen ? 'opacity-0 translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'
         }`}
-        onMouseEnter={() => setShowControls(true)} // Keep visible if hovering directly over buttons
+        onMouseEnter={() => setShowControls(true)}
       >
         <span className="text-xs text-gray-400 font-mono ml-2">
           {String(currentSlide + 1).padStart(2, '0')} <span className="text-gray-600">/</span> {String(totalSlides).padStart(2, '0')}
         </span>
         
+        {/* Speaker View Button */}
+        <button 
+             onClick={openSpeakerView}
+             className="p-3 rounded-full bg-white/5 hover:bg-white/20 hover:text-purple-400 transition-all active:scale-95 group border-r border-white/10 mr-1"
+             title="Modo Orador (Roteiro)"
+        >
+             <Mic2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
+        </button>
+
         {/* Fullscreen Button */}
         <button 
              onClick={toggleFullscreen}
